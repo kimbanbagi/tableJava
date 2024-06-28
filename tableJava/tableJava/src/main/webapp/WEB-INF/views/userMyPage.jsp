@@ -77,8 +77,17 @@
         	<c:forEach items="${history }" var="history">
         		<div>
         			날짜 : ${history.rDate }
-        			시간 : ${history.time }
-        			식당 이름 : ${history.restaurant_name }
+        			시간 : ${history.rTime }
+        			식당 이름 : ${history.rName }
+
+                    <form action="reviewPage" method="post">
+                        <input type="hidden" name="restaurantId" value="${history.rId}">
+                        <input type="hidden" name="restaurantDate" value="${history.rDate}">
+                        <input type="hidden" name="restaurantTime" value="${history.rTime}">
+                        <input type="hidden" name="restaurantName" value="${history.rName}">
+                        <input type="hidden" name="userId" value="${userId}">
+                        <button type="submit">리뷰 등록하기</button>
+                    </form>
         		</div>
         	</c:forEach>
         </div>

@@ -1,6 +1,7 @@
 package dc.human.kimbanbagi.tableJava.user.controller;
 
 import dc.human.kimbanbagi.tableJava.book.vo.BookVO;
+import dc.human.kimbanbagi.tableJava.review.vo.ReviewVO;
 import dc.human.kimbanbagi.tableJava.wait.vo.WaitVO;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,18 @@ public interface UserController {
             @RequestParam(name="userId") String userId,
             @RequestParam(name="restaurantId") String restaurantId,
             @RequestParam(name="restaurantName") String restaurantName
+    );
+
+    public ModelAndView reviewPage(
+           @RequestParam(name="userId") String userId,
+           @RequestParam(name="restaurantId") String restaurantId,
+           @RequestParam(name="restaurantName") String restaurantName,
+           @RequestParam(name="restaurantDate") String restaurantDate,
+           @RequestParam(name="restaurantTime") String restaurantTime
+    );
+
+    public ModelAndView review(
+            @ModelAttribute ReviewVO review
     );
 
     public ModelAndView search(
