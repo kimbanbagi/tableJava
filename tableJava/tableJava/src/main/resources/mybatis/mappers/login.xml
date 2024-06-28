@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.common.dao.LoginDAO">
+
+    <select id="login" parameterType="String">
+    <![CDATA[
+        SELECT distinct user_role
+        FROM users
+        WHERE user_id=#{userId} AND user_pwd=#{userPwd}
+        ]]>
+    </select>
+
+    <select id="tempCheck" parameterType="String">
+    <![CDATA[
+        SELECT distinct u1.user_role
+        FROM users u1, temporary_password t1
+        WHERE t1.user_id=#{userId} AND t1.temporary_pwd=#{userPwd}
+          AND (u1.user_id = t1.user_id)
+        ]]>
+    </select>
+
+    <select id="getRegister" parameterType="String">
+        <![CDATA[
+            SELECT store_register
+            FROM users
+            WHERE user_id=#{userId}
+        ]]>
+    </select>
+
+    <select id="findPW" parameterType="String">
+        <![CDATA[
+            SELECT COUNT(*) as cnt
+            FROM users
+            WHERE user_id=#{userId} AND user_name=#{userName}
+        ]]>
+    </select>
+
+    <insert id="addTempPW" parameterType="String">
+        <![CDATA[
+            INSERT INTO temporary_password (user_id, temporary_pwd)
+            values (#{userId}, #{tempPW})
+        ]]>
+    </insert>
+
+    <select id="findID" parameterType="String">
+        <![CDATA[
+        SELECT user_id
+        FROM users
+        WHERE (user_name = #{name}) AND (user_email = #{email})
+        ]]>
+    </select>
+
+
+</mapper>

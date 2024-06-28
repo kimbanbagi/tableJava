@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.restaurant.dao.SearchDAO">
+    <resultMap id="restaurant" type="dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO">
+        <result property="rId" column="restaurant_id" />
+        <result property="rName" column="restaurant_name" />
+        <result property="rCity" column="restaurant_city" />
+    </resultMap>
+
+    <select id="findRestaurant" resultMap="restaurant">
+        <![CDATA[
+            SELECT
+                restaurant_id,
+                restaurant_name,
+                restaurant_city
+            FROM restaurants
+            WHERE restaurant_name
+            LIKE '%' || #{keywords} || '%'
+        ]]>
+    </select>
+</mapper>
