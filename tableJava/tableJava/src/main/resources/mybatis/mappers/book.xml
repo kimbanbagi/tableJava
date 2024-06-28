@@ -126,6 +126,7 @@
         <![CDATA[
         SELECT
             restaurant_name,
+            restaurant_id,
             reservation_date,
             reservation_time
         FROM reservation
