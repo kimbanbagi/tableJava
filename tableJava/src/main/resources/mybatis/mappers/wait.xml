@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.wait.dao.WaitDAO">
+    <resultMap id="wait" type="dc.human.kimbanbagi.tableJava.wait.vo.WaitVO">
+        <result property="uId" column="user_id" />
+        <result property="uNumber" column="phone_number" />
+        <result property="rId" column="restaurant_id" />
+        <result property="rName" column="restaurant_name" />
+        <result property="hCount" column="head_count" />
+        <result property="wNumber" column="waiting_number" />
+        <result property="wStatus" column="waiting_status" />
+    </resultMap>
+
+    <select id="getUserWaitList" resultMap="wait">
+        <![CDATA[
+            SELECT
+                 user_id,
+                 phone_number,
+                 restaurant_id,
+                 restaurant_name,
+                 head_count,
+                 waiting_number,
+                 DECODE(waiting_status,  '0', '웨이팅 중', '1', '호출', '2', '웨이팅 취소', '3', '웨이팅 거절', '4', '착석 완료') waiting_status
+            FROM waiting
+            WHERE user_id=#{userId}
+        ]]>
+    </select>
+
+    <select id="getOwnerWaitList" resultMap="wait">
+        <![CDATA[
+        SELECT
+            user_id,
+            phone_number,
+            restaurant_id,
+            restaurant_name,
+            head_count,
+            waiting_number,
+            DECODE(waiting_status,  '0', '웨이팅 중', '1', '호출', '2', '웨이팅 취소', '3', '웨이팅 거절', '4', '착석 완료') waiting_status
+        FROM waiting
+        WHERE restaurant_id=#{restaurantId}
+        ]]>
+    </select>
+
+    <select id="getNextNumber" parameterType="String">
+        <![CDATA[
+            SELECT COUNT(*) as cnt
+            FROM waiting
+            WHERE restaurant_id=#{restaurantId}
+        ]]>
+    </select>
+
+    <insert id="addWait" parameterType="dc.human.kimbanbagi.tableJava.wait.vo.WaitVO">
+        <![CDATA[
+            INSERT INTO waiting (
+                                 user_id,
+                                 phone_number,
+                                 restaurant_id,
+                                 restaurant_name,
+                                 head_count,
+                                 waiting_number,
+                                 waiting_status
+            ) VALUES (
+                      #{uId},
+                      #{uNumber},
+                      #{rId},
+                      #{rName},
+                      #{hCount},
+                      #{wNumber},
+                      #{wStatus}
+                     )
+        ]]>
+
+    </insert>
+</mapper>
