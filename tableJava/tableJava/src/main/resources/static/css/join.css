@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto; /* 가운데 정렬을 위해 margin 수정 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="radio"] {
+    display: none; /* 라디오 버튼 숨기기 */
+}
+
+form button[type="button"] {
+    background-color: #FF1616; /* 색상을 #FF1616로 변경 */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    
+}
+
+form button[type="submit"] {
+    background-color: #FF1616; /* 색상을 #FF1616로 변경 */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 403px;
+    transition: background-color 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #ff6d2a; /* hover 시 배경색 변경 */
+}
+
+#error-message {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+#idCheckResult {
+    display: block;
+    margin-top: 10px;
+}
+
+.logo_image {
+    text-align: center; 
+    margin-bottom: 20px; /* 로고 이미지와 폼 사이의 간격 추가 */
+}
+
+.logo_image img {
+    width: 100px; /* 원하는 크기로 설정 */
+    height: 100px; /* 원하는 크기로 설정 */
+}
+
+.select {
+	display:flex;
+	justify-content:center;
+    padding: 15px 0;
+}
+
+.select input[type=radio] {
+    display: none; /* 라디오 버튼 숨기기 */
+}
+
+.select label {
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 0px solid;
+    border-radius:10px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: lightgray;
+    color: #333;
+    margin-right: 40px;
+}
+
+.select label:last-of-type {
+    margin-right: 0; /* 마지막 label의 오른쪽 margin 제거 */
+}
+
+.select input[type=radio]:checked + label {
+    background-color: #FF1616;
+    color: #fff;
+}
+
+
