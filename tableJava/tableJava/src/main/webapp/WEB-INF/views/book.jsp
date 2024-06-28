@@ -7,7 +7,24 @@
 <meta charset="UTF-8">
 <title>예약 화면</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="css/book.css">
 <script>
+	//햄버거 메뉴 스크립트
+	$(document).ready(function() {
+		let subToggle = true;
+
+		$(".menu").click(function() {
+			const $submenu = $(".sub");
+			if (subToggle) {
+				$submenu.stop().slideDown(300);
+			} else {
+				$submenu.stop().slideUp(300);
+			}
+			subToggle = !subToggle;
+		});
+	});
+
+
 	$(document).ready(function() {
 		var a_count = parseInt($("#a_count").text()); // 성인 인원
 		var k_count = parseInt($("#k_count").text()); // 유아 인원
@@ -90,15 +107,48 @@
 </script>
 </head>
 <body>
+	<div class="nav navbar_main">
+		<img src="image/logo1.png" alt="로고이미지" class="navbar_logo">
+		<div class="buttons-container navbar_links">
+			<form method="POST" action="userMain">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit">메인 화면</button>
+			</form>
+			<form method="POST" action="UserBookList">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit" name="action" value="bookList">예약 / 웨이팅</button>
+			</form>
+			<form method="post" action="Notification">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit" name="action" value="userNotification">알림</button>
+			</form>
+			<button onclick="location.reload()">마이 페이지</button>
+		</div>
+		<div class="menu">
+			<span>☰</span>
+			<ul class="sub">
+				<li>
+					<a href="#None">여긴뭐</a>
+				</li>
+				<li>
+					<a href="#None">환경설정</a>
+				</li>
+				<li>
+					<a href="#None">로그아웃</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<form action="book" method="post" id="frm">
 		<input type="hidden" name="uId" value="${userId }">
 		<input type="hidden" name="rId" value="${restaurantId }">
 		<input type="hidden" name="rName" value="${restaurantName}">
 		<div id="container">
 			<div id="store_div">
-				<div>사진</div>
-				<div>
-					가게 정보<br> 식당 이름 : ${restaurantName } <br>
+				<div class="photo">사진</div>
+				<div class="info"><h2>가게 정보</h2><br>
+					<br> 식당 이름 : ${restaurantName } <br>
 				</div>
 			</div>
 			<div id="book_div">

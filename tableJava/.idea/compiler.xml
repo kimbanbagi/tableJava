@@ -8,7 +8,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-configuration-processor/3.2.7/2e4b9567bf984264c7ed69d633becdeea2345cc1/spring-boot-configuration-processor-3.2.7.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
         </processorPath>
-        <module name="tableJava.tableJava.main" />
+        <module name="dc.human.kimbanbagi.tableJava.tableJava.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
