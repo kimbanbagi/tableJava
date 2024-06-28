@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.restaurant.dao.RestaurantDAO">
+    <resultMap id="restaurant" type="dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO">
+        <result property="rId" column="restaurant_id" />
+        <result property="rName" column="restaurant_name" />
+        <result property="rHead" column="restaurant_head" />
+        <result property="rCity" column="restaurant_city" />
+        <result property="rAddress" column="restaurant_address" />
+        <result property="rNumber" column="restaurant_number" />
+        <result property="uId" column="user_id" />
+        <result property="rStatus" column="reservation_status" />
+        <result property="wStatus" column="waiting_status" />
+    </resultMap>
+
+    <select id="getResInfo" resultMap="restaurant">
+        <![CDATA[
+            SELECT * FROM restaurants WHERE user_id=#{userId}
+        ]]>
+    </select>
+
+    <insert id="addRestaurant" parameterType="dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO">
+        <![CDATA[
+            INSERT INTO restaurants
+                (restaurant_id, restaurant_name, restaurant_head, restaurant_city, restaurant_address, restaurant_number, restaurant_photo, user_id, reservation_status, waiting_status)
+            values (#{rId}, #{rName}, #{rHead}, #{rCity}, #{rAddress}, #{rNumber}, #{rPhoto}, #{uId}, #{rStatus}, #{wStatus})
+        ]]>
+    </insert>
+
+    <update id="updateRegister" parameterType="String">
+        <![CDATA[
+            UPDATE users SET
+                             store_register='T'
+            WHERE user_id=#{userId}
+        ]]>
+    </update>
+
+    <select id="getRestaurantDetail" resultMap="restaurant">
+        <![CDATA[
+            SELECT *
+            FROM restaurants
+            WHERE restaurant_id=#{restaurantId}
+        ]]>
+    </select>
+
+</mapper>
