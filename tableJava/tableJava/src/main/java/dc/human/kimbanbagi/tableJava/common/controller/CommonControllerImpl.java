@@ -6,6 +6,7 @@ import dc.human.kimbanbagi.tableJava.common.vo.UserVO;
 import dc.human.kimbanbagi.tableJava.restaurant.service.OwnerRestaurantService;
 import dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -78,6 +79,7 @@ public class CommonControllerImpl implements CommonController {
 
             } else if("U".equals(userRole)){
 
+                
                 mav.addObject("userId", userId);
                 viewName = "userMain";
 

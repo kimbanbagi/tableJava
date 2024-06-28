@@ -88,9 +88,9 @@ function validateForm() {
 	
 		<span id="idCheckResult"></span><br>
 		PW:<br>
-		<input type="text" name="pwd"><br>
+		<input type="text" name="uPwd"><br>
 		EMAIL:<br>
-		<input type="text" name="email"><br>
+		<input type="text" name="uEmail"><br>
 		이름:<br>
 		<input type="text" name="uName"><br>
 		번호:<br>

@@ -83,12 +83,23 @@
 			<c:forEach items="${bookList}" var="book">
 				<div class="bookDiv">
 					<div class="bookContent">
-						<div class="status"><h3>예약 상태 : ${book.rStatus }</h3></div>
-						예약한 식당 : ${book.rName } <br> 예약 날짜 : ${book.rDate }
-						<br> 예약 시간 : ${book.rTime } <br> <br>
-						예약자 성함 : ${book.uName} <br>예약 인원 수 : ${book.aCount + book.kCount }
-						명 <br> 유모차 사용 : ${book.sCount } 개<br> 휠체어 사용 :
-						${book.wCount } 개<br> 요청 사항 : ${book.requirements } <br>
+						<div class="status"><h3>${book.rStatus }</h3></div>
+						<div class="bookContentHead">
+								<h3>${book.rName }</h3>
+						</div>
+						<div class="bookContentDiv">
+							<div class="bookContentTail">
+								일정  ${book.rDate } ${book.rTime } <br>
+								성함  ${book.uName} <br>
+								인원  ${book.aCount + book.kCount } <br>
+							</div>
+							<div class="bookContentRequirement">
+								유모차  ${book.sCount } <br>
+								휠체어  ${book.wCount} <br>
+								요청 사항 <br>
+									${book.requirements }
+							</div>
+						</div>
 					</div>
 					<div class="bookBtnDiv">
 						<c:if test="${book.rStatus == '예약 대기'}">

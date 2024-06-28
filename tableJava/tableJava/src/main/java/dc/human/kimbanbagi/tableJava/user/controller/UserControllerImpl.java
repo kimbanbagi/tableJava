@@ -52,8 +52,16 @@ public class UserControllerImpl implements UserController {
     public ModelAndView userMainPage(@RequestParam(name="userId") String userId){
         ModelAndView mav = new ModelAndView();
 
-        mav.addObject("userId", userId);
-        mav.setViewName("userMain");
+        try{
+            UserVO user = userService.getUserInfo(userId);
+
+            mav.addObject("user", user);
+            mav.addObject("userId", userId);
+            mav.setViewName("userMain");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return mav;
     }
