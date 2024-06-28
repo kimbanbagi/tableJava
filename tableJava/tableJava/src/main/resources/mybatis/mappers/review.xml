@@ -7,7 +7,8 @@
     <resultMap id="review" type="dc.human.kimbanbagi.tableJava.review.vo.ReviewVO">
         <result property="rId" column="restaurant_id" />
         <result property="rName" column="restaurant_name" />
-        <result property="rAddress" column="restaurant_address" />
+        <result property="rDate" column="reservation_date" />
+        <result property="rTime" column="reservation_time" />
         <result property="uId" column="user_id" />
         <result property="star" column="star" />
         <result property="grade" column="grade" />
@@ -15,6 +16,7 @@
         <result property="createdDate" column="created_date" />
         <result property="updatedDate" column="updated_date" />
     </resultMap>
+
     <insert id="addReview" parameterType="dc.human.kimbanbagi.tableJava.review.vo.ReviewVO">
         <![CDATA[
             insert into review(restaurant_id, restaurant_name, user_id, review )

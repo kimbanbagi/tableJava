@@ -125,6 +125,8 @@
     <select id="getHistory" resultMap="book">
         <![CDATA[
         SELECT
+            user_id,
+            user_name,
             restaurant_name,
             restaurant_id,
             reservation_date,
