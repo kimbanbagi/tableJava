@@ -7,6 +7,8 @@ import dc.human.kimbanbagi.tableJava.notification.vo.NotificationVO;
 
 import dc.human.kimbanbagi.tableJava.book.service.UserBookService;
 import dc.human.kimbanbagi.tableJava.restaurant.service.UserRestaurantService;
+import dc.human.kimbanbagi.tableJava.review.service.ReviewService;
+import dc.human.kimbanbagi.tableJava.review.vo.ReviewVO;
 import dc.human.kimbanbagi.tableJava.user.service.UserService;
 import dc.human.kimbanbagi.tableJava.wait.service.UserWaitService;
 
@@ -42,13 +44,24 @@ public class UserControllerImpl implements UserController {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private ReviewService reviewService;
+
     @Override
     @RequestMapping(method = RequestMethod.POST, value="/userMainPage")
     public ModelAndView userMainPage(@RequestParam(name="userId") String userId){
         ModelAndView mav = new ModelAndView();
 
-        mav.addObject("userId", userId);
-        mav.setViewName("userMain");
+        try{
+            UserVO user = userService.getUserInfo(userId);
+
+            mav.addObject("user", user);
+            mav.addObject("userId", userId);
+            mav.setViewName("userMain");
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         return mav;
     }
@@ -129,6 +142,49 @@ public class UserControllerImpl implements UserController {
         mav.addObject("userId", userId);
         mav.setViewName("userWaitList");
 
+        return mav;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST, value = "/reviewPage")
+    public ModelAndView reviewPage(
+            @RequestParam(name="userId") String userId,
+            @RequestParam(name="restaurantId") String restaurantId,
+            @RequestParam(name="restaurantName") String restaurantName,
+            @RequestParam(name="restaurantDate") String restaurantDate,
+            @RequestParam(name="restaurantTime") String restaurantTime
+    ){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("userId", userId);
+        mav.addObject("restaurantId", restaurantId);
+        mav.addObject("restaurantName", restaurantName);
+        mav.addObject("restaurantDate", restaurantDate);
+        mav.addObject("restaurantTime", restaurantTime);
+
+        mav.setViewName("review");
+
+        return mav;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST,value = "/review")
+    public ModelAndView review(
+            @ModelAttribute ReviewVO review
+    ){
+        ModelAndView mav = new ModelAndView();
+        try{
+            int result = 0;
+            result = reviewService.addReview(review);
+
+            if(result == 0){
+                //error
+            } else{
+                mav.setViewName("userMyPage");
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
         return mav;
     }
 

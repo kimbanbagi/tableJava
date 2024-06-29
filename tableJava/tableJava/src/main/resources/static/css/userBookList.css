@@ -1,4 +1,12 @@
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
 body {
+	font-family: 'Pretendard-Regular';
 	display: flex;
 	align-items:center;
 	background-color:#f8f9fa;
@@ -60,46 +68,6 @@ body {
     left: 0;
 }
 
-.logout {
-    position: absolute;
-    top: 50%; /* Position relative to the parent (.nav) /
-    transform: translateY(2%); / Move down by 50% of its own height /
-    right: 5px;
-}
-
-.logout button {
-    background-color: transparent;
-    color: #000; / Default text color /
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px; / Font size set to 14px /
-    transition: color 0.3s; / Transition effect for text color /
-    border-radius: 5px;
-    text-decoration: none; / Remove default underline /
-    position: relative;
-}
-
-.logout button:hover {
-    color: #ff1616; / Text color changes to ff1616 on hover */
-}
-
-.logout button::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 50%;
-    bottom: 0;
-    background-color: #ff1616;
-    transition: width 0.3s, left 0.3s;
-}
-
-.logout button:hover::after {
-    width: 0;
-    left: 50%;
-}
-
 .container {
 	width:100%;
 	max-width:800px;
@@ -148,7 +116,7 @@ body {
 
 .bookDiv {
 	width:100%;
-	height:200px;
+	height:250px;
 	margin-top: 20px;
 	background-color:#fff;
 	display:flex;
@@ -165,9 +133,42 @@ body {
 }
 
 .status {
-	width:100%;
+	width:100px;
 	height:30px;
+	background-color:#EBEBEB;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-top:30px;
 	margin-bottom:10px;
+}
+
+.bookContentDiv {
+	width:500px;
+	display: flex;
+}
+
+.bookContentHead {
+	width:100px;
+	height:30px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin-top:10px;
+	margin-bottom:10px;
+	background-color: yellow;
+}
+
+.bookContentTail {
+	width:300px;
+	height:100px;
+	background-color:#EBEBEB;
+}
+
+.bookContentRequirement {
+	width:150px;
+	height:100px;
+	background-color:#EBEBEB;
 }
 
 .bookBtnDiv {

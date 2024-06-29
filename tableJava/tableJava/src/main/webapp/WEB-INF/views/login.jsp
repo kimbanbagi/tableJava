@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>로그인 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/login.css">
     <script>
         var msg = "${msg}";
 
@@ -38,10 +38,12 @@
 <body>
 <div class="container">
     <form action="login" method="post">
-        <img src="">
+        <div class="container-logo">
+            <img src="image/logo.png">
+        </div>
         <div class="input-group">
-            <label>아이디</label> <input type="text" name="userId"
-                                                    required>
+            <label>아이디</label>
+            <input type="text" name="userId" required>
         </div>
         <div class="input-group">
             <label>비밀번호</label> <input type="password"
