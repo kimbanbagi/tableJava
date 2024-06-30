@@ -14,6 +14,7 @@
         <result property="uRole" column="user_role" />
         <result property="register" column="store_register" />
         <result property="withdrawal" column="withdrawal_status" />
+        <result property="grade" column="grade" />
     </resultMap>
 
     <select id="getUserInfo" resultMap="user">
@@ -25,7 +26,8 @@
             phone_number,
             user_role,
             store_register,
-            withdrawal_status
+            withdrawal_status,
+            grade
         FROM users
         WHERE user_id=#{userId}
         ]]>

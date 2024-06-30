@@ -60,46 +60,6 @@ body {
     left: 0;
 }
 
-.logout {
-    position: absolute;
-    top: 50%; /* Position relative to the parent (.nav) /
-    transform: translateY(2%); / Move down by 50% of its own height /
-    right: 5px;
-}
-
-.logout button {
-    background-color: transparent;
-    color: #000; / Default text color /
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 14px; / Font size set to 14px /
-    transition: color 0.3s; / Transition effect for text color /
-    border-radius: 5px;
-    text-decoration: none; / Remove default underline /
-    position: relative;
-}
-
-.logout button:hover {
-    color: #ff1616; / Text color changes to ff1616 on hover */
-}
-
-.logout button::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 50%;
-    bottom: 0;
-    background-color: #ff1616;
-    transition: width 0.3s, left 0.3s;
-}
-
-.logout button:hover::after {
-    width: 0;
-    left: 50%;
-}
-
 .container {
 	width:100%;
 	max-width:800px;
