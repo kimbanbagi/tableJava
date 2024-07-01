@@ -41,6 +41,20 @@
 			}
 		});
 	}
+
+	$(document).ready(function() {
+		let subToggle = true;
+
+		$(".menu").click(function() {
+			const $submenu = $(".sub");
+			if (subToggle) {
+				$submenu.stop().slideDown(300);
+			} else {
+				$submenu.stop().slideUp(300);
+			}
+			subToggle = !subToggle;
+		});
+	});
 </script>
 </head>
 <body>
@@ -62,19 +76,32 @@
 					페이지</button>
 			</form>
 		</div>
+		<div class="menu">
+			<span>☰</span>
+			<ul class="sub">
+				<li>
+					<a href="#None">여기에</a>
+				</li>
+				<li>
+					<a href="#None">무엇을</a>
+				</li>
+				<li>
+					<a href="#None">넣을까요</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<div class="container">
 		<div class="optionDiv">
-			<div class="btnDiv">
+			<div class="bookOptionDiv">
 				<form method="post" action="userBookListPage">
 					<input type="hidden" name="userId" value="${userId }">
-					<button type="submit">예약
-						내역</button>
+					<button type="submit">예약</button>
 				</form>
 			</div>
-			<div class="btnDiv">
-				<button onclick="location.reload()" id="btn">웨이팅 내역</button>
+			<div class="waitOptionDiv">
+				<button onclick="location.reload()" id="btn">웨이팅</button>
 			</div>
 		</div>
 		<div class="contentDiv">

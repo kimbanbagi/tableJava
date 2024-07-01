@@ -10,22 +10,40 @@
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1f3274f01f7f59a2883492e9cd1c8599"></script>
+<link rel="stylesheet" href="css/userMain.css">
 </head>
 <body>
-	<div class="navbar">
-		<button onclick="location.reload()">메인 화면</button>
-		<form method="post" action="userBookListPage">
-			<input type="hidden" name="userId" value="${userId }">
-			<button type="submit">예약/웨이팅</button>
-		</form>
-		<form method="post" action="userNotificationPage">
-        	<input type="hidden" name="userId" value="${userId }">
-        	<button type="submit">알림</button>
-        </form>
-		<form method="post" action="userMyPage">
-			<input type="hidden" name="userId" value="${userId }">
-			<button type="submit" >마이 페이지</button>
-		</form>
+	<div class="nav">
+		<img src="image/logo1.png" alt="로고 이미지">
+		<div class="buttons-container">
+			<button onclick="location.reload()">메인 화면</button>
+			<form method="post" action="userBookListPage">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit">예약/웨이팅</button>
+			</form>
+			<form method="post" action="userNotificationPage">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit">알림</button>
+			</form>
+			<form method="post" action="userMyPage">
+				<input type="hidden" name="userId" value="${userId }">
+				<button type="submit" >마이 페이지</button>
+			</form>
+		</div>
+		<div class="menu">
+			<span>☰</span>
+			<ul class="sub">
+				<li>
+					<a href="#None">여기에</a>
+				</li>
+				<li>
+					<a href="#None">무엇을</a>
+				</li>
+				<li>
+					<a href="#None">넣을까요</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 	<div>
 		<h1>${user.uName} 님 안녕하세요 !!!</h1>

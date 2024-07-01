@@ -1,0 +1,330 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #fff7ed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    background-color: #ff1616;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red; /* This seems specific, check if needed */
+}
+
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    width: 200px;
+    right: 0;
+    top: 100%;
+    transition: display 0.3s ease;
+    height: 100vh;
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+
+
+.container {
+    width: 800px;
+    /* height: 100vh; */
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border: 3px solid #0f7700;
+    border-radius: 20px;
+}
+
+.section{
+    height: 50vh;
+}
+
+.restaurant-info h2, .restaurant-info p {
+    margin: 10px 0;
+}
+
+.review-section, .recommended-section, .local-restaurants {
+    margin-bottom: 40px;
+}
+
+.review-section h3 {
+    margin-bottom: 10px;
+}
+
+
+#review-content {
+    width: 770px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.rating {
+    margin: 10px 0;
+}
+
+.rating-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #dcdcdc;
+    transition: color 0.3s;
+}
+
+.star:hover, .star.selected {
+    color: #ff1616;
+}
+
+#submit-review {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6654;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-review:hover {
+    background-color: #cc1313;
+}
+
+
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.mySlides {
+    display: none;
+}
+
+.mySlides img {
+    width: 500px;
+    height: 500px;
+}
+
+.recommended-restaurants {
+    margin-top: 20px;
+}
+
+.local-restaurants {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: nowrap;
+    width: 100%; /* 부모 요소의 너비 설정 */
+    justify-content: center; /* 시작점을 기준으로 정렬 */
+}
+
+.restaurant-slider {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+
+.local-restaurants .restaurant-item img {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+
+.recommended-section h2, .local-restaurants h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 사이드 배너 스타일 */
+.side-banner {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 150px;
+}
+
+.side-banner h3 {
+    text-align: center;
+}
+
+.side-banner a {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.side-banner img {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+
+footer{
+    width:100%;
+    background-color:#fff7ed;
+    bottom: 0;
+    position: relative;
+    left: 0;
+}
+
+.footerContainer {
+    margin : 20px auto;
+    text-align: center;
+    border-top:1px solid #0f7700 ;
+
+}
+.footerContainer > div>div>span>img {
+    margin : 0 auto;
+    vertical-align: middle;
+    float:left;
+}
+.logoFont {
+    font-family: "Black Han Sans", sans-serif;
+    height: 40px;
+}
+
+.footerLogo > span > select{
+    width : 180px;
+    height: 40px;
+    font-size: 13pt;
+    float : right;
+}
+
+.workLinks > ul{
+    margin-right:30px;
+}
+
+.workLinks > ul > li {
+    display: inline-block;
+    margin-top : 20px;
+    font-size: 10.6px;
+}
+.footerLogo {
+    margin: 0 auto;
+    width : 980px;
+}
+.footersen {
+    font-size: 11px;
+    text-align: left;
+    margin-left:170px;
+}
+.footersen>div{
+    margin-top: 7px;
+}

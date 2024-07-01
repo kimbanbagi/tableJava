@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>웨이팅 화면</title>
-<link rel="stylesheet" href="wait.css">
+<link rel="stylesheet" href="css/wait.css">
 </head>
 <body>
     <div class="container">

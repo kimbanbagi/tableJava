@@ -3,9 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< Updated upstream
     <meta charset="UTF-8">
     <title>웨이팅 성공 화면</title>
     <link rel="stylesheet" href="css/waitSuccess.css">
+=======
+<meta charset="UTF-8">
+<title>웨이팅 성공 화면</title>
+	<link rel="stylesheet" href="css/waitSuccess.css">
+>>>>>>> Stashed changes
 </head>
 <body>
     <div class="container">

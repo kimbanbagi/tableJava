@@ -70,19 +70,22 @@
 <div class="nav">
     <img src="image/logo1.png" alt="로고이미지">
     <div class="buttons-container">
-        <form method="POST" action="userMain">
+        <form method="POST" action="userMainPage">
             <input type="hidden" name="userId" value="${userId }">
             <button type="submit">메인 화면</button>
         </form>
-        <form method="POST" action="UserBookList">
+        <form method="POST" action="userBookListPage">
             <input type="hidden" name="userId" value="${userId }">
             <button type="submit" name="action" value="bookList">예약 / 웨이팅</button>
         </form>
-        <form method="post" action="">
+        <form method="post" action="userNotificationPage">
             <input type="hidden" name="userId" value="${userId }">
             <button type="submit">알림</button>
         </form>
-        <button onclick="location.reload()">마이 페이지</button>
+        <form method="post" action="userMyPage">
+            <input type="hidden" name="userId" value="${userId }">
+            <button type="submit" >마이 페이지</button>
+        </form>
     </div>
     <div class="menu">
         <span>☰</span>
