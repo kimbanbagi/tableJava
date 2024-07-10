@@ -17,6 +17,15 @@ public class BookVO {
     String uName;
     Date createdDate;
     Date updatedDate;
+    String written;
+
+    public String getWritten() {
+        return written;
+    }
+
+    public void setWritten(String written) {
+        this.written = written;
+    }
 
     public Date getCreatedDate() {
         return createdDate;

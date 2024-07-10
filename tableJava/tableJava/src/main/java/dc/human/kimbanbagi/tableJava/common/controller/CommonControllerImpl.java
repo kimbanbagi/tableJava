@@ -2,15 +2,23 @@ package dc.human.kimbanbagi.tableJava.common.controller;
 
 import dc.human.kimbanbagi.tableJava.common.service.JoinService;
 import dc.human.kimbanbagi.tableJava.common.service.LoginService;
+import dc.human.kimbanbagi.tableJava.common.service.PasswordService;
 import dc.human.kimbanbagi.tableJava.common.vo.UserVO;
 import dc.human.kimbanbagi.tableJava.restaurant.service.OwnerRestaurantService;
+import dc.human.kimbanbagi.tableJava.restaurant.service.UserRestaurantService;
 import dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO;
 
+import dc.human.kimbanbagi.tableJava.review.service.ReviewService;
+import dc.human.kimbanbagi.tableJava.review.vo.ReviewVO;
+import dc.human.kimbanbagi.tableJava.user.service.UserService;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class CommonControllerImpl implements CommonController {
@@ -21,7 +29,19 @@ public class CommonControllerImpl implements CommonController {
     private JoinService joinService;
 
     @Autowired
+    private PasswordService passwordService;
+
+    @Autowired
+    private UserRestaurantService userRestaurantService;
+
+    @Autowired
     private OwnerRestaurantService ownerRestaurantService;
+
+    @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private UserService userService;
 
     private RestaurantVO restaurant;
 
@@ -58,6 +78,17 @@ public class CommonControllerImpl implements CommonController {
     }
 
     @Override
+    @RequestMapping(method = RequestMethod.POST, value="/changePwdPage")
+    public ModelAndView changePwdPage(@RequestParam(name="userId") String userId){
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("userId", userId);
+        mav.setViewName("changePwd");
+
+        return mav;
+    }
+
+    @Override
     @RequestMapping(method = RequestMethod.POST, value="/login")
     public ModelAndView login(
             @RequestParam(name="userId") String userId,
@@ -74,23 +105,37 @@ public class CommonControllerImpl implements CommonController {
             if(userRole == null || "".equals(userRole)) {
 
                 msg = "일치하는 회원 정보가 없습니다.";
-                mav.addObject("msg", msg);
+                mav.addObject("msgFailed", msg);
                 viewName = "login";
 
             } else if("U".equals(userRole)){
 
-                
+                UserVO user = userService.getUserInfo(userId);
+
+                mav.addObject("user", user);
                 mav.addObject("userId", userId);
+
+                List<RestaurantVO> recommendList = userRestaurantService.recommendList();
+                mav.addObject("recommendList", recommendList);
+
+                RestaurantVO randomRestaurant = userRestaurantService.randomRestaurant();
+                String randomRId = randomRestaurant.getrId();
+                ReviewVO randomReview = reviewService.randomReview(randomRId);
+
+                mav.addObject("randomRestaurant", randomRestaurant);
+                mav.addObject("randomReview", randomReview);
+
                 viewName = "userMain";
 
-            }else {
+            }else if("O".equals(userRole)) {
 
-                String restaurantId = loginService.getRegister(userId);
+                String register = loginService.getRegister(userId);
 
-                if("T".equals(restaurantId)){
+                if("T".equals(register)){
                     viewName = "ownerMain";
 
                     restaurant = ownerRestaurantService.getResInfo(userId);
+                    String restaurantId = restaurant.getrId();
 
                     mav.addObject("restaurant", restaurant);
                     mav.addObject("userId", userId);
@@ -103,6 +148,8 @@ public class CommonControllerImpl implements CommonController {
 
                 }
 
+            }else {
+                // error
             }
 
             mav.setViewName(viewName);
@@ -123,11 +170,16 @@ public class CommonControllerImpl implements CommonController {
             int result = joinService.addJoin(user);
 
             if(result == 1){
+
+                String msg = "회원 가입에 성공했습니다!";
+                mav.addObject("msgSuccess", msg);
                 mav.setViewName("login");
+
             }else{
+
                 String msg = "회원 가입에 실패했습니다. 다시 시도해주세요.";
 
-                mav.addObject("msg", msg);
+                mav.addObject("msgFailed", msg);
                 mav.setViewName("join");
             }
 
@@ -153,13 +205,12 @@ public class CommonControllerImpl implements CommonController {
             @RequestParam(name="email") String email
     ){
         ModelAndView mav = new ModelAndView();
+
         try{
-            String msg = "";
             String viewName = "" ;
             String userId = loginService.findID(name, email);
 
             if(userId == null || "".equals(userId)){
-                msg = "ID NO";
                 viewName = "join";
             } else {
                 viewName = "findID_OK";
@@ -167,8 +218,9 @@ public class CommonControllerImpl implements CommonController {
             }
 
             mav.setViewName(viewName);
+
         } catch (Exception ex){
-            System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return mav;
     }
@@ -198,6 +250,51 @@ public class CommonControllerImpl implements CommonController {
             mav.addObject("tempPW", tempPW);
             mav.setViewName("findPW_done");
         }
+
+        return mav;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST, value="/updatePwd")
+    public ModelAndView updatePwd(
+            @RequestParam(name="userId") String userId,
+            @RequestParam(name="currPwd") String currPwd,
+            @RequestParam(name="newPwd") String newPwd
+    ){
+        ModelAndView mav = new ModelAndView();
+
+        try{
+            int result = 0;
+
+            result = passwordService.updatePwd(userId, currPwd, newPwd);
+
+            if(result == 0){
+                String msg = "기존 비밀번호와 불일치합니다.";
+
+                mav.addObject("msgFailed", msg);
+            }else {
+                String msg = "비밀번호가 변경되었습니다. 다시 로그인 해주세요.";
+                mav.addObject("msgSuccess", msg);
+            }
+
+            mav.setViewName("login");
+
+
+        }catch(Exception e){
+
+        }
+
+        return mav;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST, value="/logout")
+    public ModelAndView logout(){
+        ModelAndView mav = new ModelAndView();
+
+        mav.addObject("userId","");
+        mav.addObject("restaurantId", "");
+        mav.setViewName("login");
 
         return mav;
     }

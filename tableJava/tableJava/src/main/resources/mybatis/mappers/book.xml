@@ -16,6 +16,8 @@
         <result property="sCount" column="stroller" />
         <result property="wCount" column="wheelchair" />
         <result property="requirements" column="requirements" />
+        <result property="uName" column="user_name" />
+        <result property="written" column="written_status" />
     </resultMap>
 
     <select id="getUserBookList" resultMap="book">
@@ -30,7 +32,9 @@
                 kids_count,
                 stroller,
                 wheelchair,
-                requirements
+                requirements,
+                user_name,
+                written_status
             FROM reservation
             WHERE user_id=#{userId}
         ]]>
@@ -48,7 +52,9 @@
             kids_count,
             stroller,
             wheelchair,
-            requirements
+            requirements,
+            user_name,
+            written_status
         FROM reservation
         WHERE restaurant_id=#{restaurantId}
         ]]>
@@ -70,7 +76,8 @@
                                      requirements,
                                      user_name,
                                      created_id,
-                                     created_date
+                                     created_date,
+                                     written_status
             ) values (
                       #{uId},
                       #{rId},
@@ -85,7 +92,8 @@
                       #{requirements},
                       #{uName},
                       #{uId},
-                      #{createdDate}
+                      #{createdDate},
+                      #{written}
                      )
         ]]>
     </insert>
@@ -130,10 +138,19 @@
             restaurant_name,
             restaurant_id,
             reservation_date,
-            reservation_time
+            reservation_time,
+            written_status
         FROM reservation
         WHERE user_id=#{userId} AND reservation_status='4'
         ]]>
     </select>
+
+    <update id="updateWritten" parameterType="String">
+        <![CDATA[
+            UPDATE reservation SET
+                                   written_status='T'
+            WHERE user_id=#{userId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
 
 </mapper>

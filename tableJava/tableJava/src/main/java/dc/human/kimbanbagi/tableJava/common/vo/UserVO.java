@@ -1,6 +1,6 @@
 package dc.human.kimbanbagi.tableJava.common.vo;
 
-import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 
@@ -11,14 +11,40 @@ public class UserVO {
     String uEmail;
     String uName;
     String uNumber;
-    String uImage;
+    MultipartFile uImage;
     String uRole;
     String register;
     String withdrawal;
+    String grade;
     String createdId;
     Date createdDate;
     String updatedId;
     Date updatedDate;
+    String fileName;
+
+    public MultipartFile getuImage() {
+        return uImage;
+    }
+
+    public void setuImage(MultipartFile uImage) {
+        this.uImage = uImage;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
 
     public String getuPwd() {
         return uPwd;
@@ -92,13 +118,6 @@ public class UserVO {
         this.uNumber = uNumber;
     }
 
-    public String getuImage() {
-        return uImage;
-    }
-
-    public void setuImage(String uImage) {
-        this.uImage = uImage;
-    }
 
     public String getuRole() {
         return uRole;

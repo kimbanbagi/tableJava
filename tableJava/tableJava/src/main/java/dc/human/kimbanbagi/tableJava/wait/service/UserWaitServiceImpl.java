@@ -21,11 +21,13 @@ public class UserWaitServiceImpl implements UserWaitService {
 
     @Override
     public List<WaitVO> getUserWaitList(String userId){
+
         return waitDAO.getUserWaitList(userId);
     }
 
     @Override
     public String getNextNumber(String restaurantId) {
+
         return waitDAO.getNextNumber(restaurantId);
     }
 
@@ -34,5 +36,10 @@ public class UserWaitServiceImpl implements UserWaitService {
         wait.setCreatedDate(sqlDate);
 
         return waitDAO.addWait(wait);
+    }
+
+    @Override
+    public int cancelWait(String userId, String restaurantId){
+        return waitDAO.cancelWaitFromUser(userId, restaurantId);
     }
 }

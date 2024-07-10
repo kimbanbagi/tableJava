@@ -14,100 +14,221 @@ body {
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px 20px;
-    border-bottom: 1px solid #e0e0e0;
-    width: 100%;
-    justify-content: center;
-    position: relative;
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	padding: 10px 20px;
+	border-bottom: 1px solid #e0e0e0;
+	width: 100%;
+	justify-content: center;
+	position: relative;
+	animation: navbarBottom 1s forwards;
+	z-index: 1000;
 }
 
 .nav img {
-    width: 150px;
-    height: 50px;
-    position: absolute;
-    left: 20px;
+	width:150px;
+	height:50px;
+	position: absolute;
+	left: 20px;
+}
+
+.nav form, .nav button {
+	margin: 0 20px;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .nav .buttons-container {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
 }
 
 .nav button {
-    background-color: transparent;
-    color: #000;
-    border: none;
-    padding: 10px 20px;
-    margin-left: 15px;
-    cursor: pointer;
-    transition: color 0.3s, border-bottom 0.3s;
-    position: relative;
+	background-color: transparent;
+	color:gray;
+	border: none;
+	padding: 10px 20px;
+	margin-left: 15px;
+	cursor: pointer;
+	transition: color 0.3s, border-bottom 0.3s;
+	position: relative;
 }
 
 .nav button::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 50%;
-    bottom: 0;
-    background-color: #ff1616;
-    transition: width 0.3s, left 0.3s;
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 2px;
+	left: 50%;
+	bottom: 0;
+	transition: width 0.3s, left 0.3s;
 }
 
 .nav button:hover {
-    color: #ff1616;
+	color: #ff1616;
 }
 
 .nav button:hover::after {
-    width: 100%;
-    left: 0;
+	width: 100%;
+	left: 0;
+}
+
+.nav h2 {
+	display: inline-block;
+	margin: 0 15px;
+	color: red;
+}
+.menu {
+	font-size: 20px;
+	font-weight: bold;
+	color: gray;
+	background-color: transparent;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	transition: color 0.3s, border-bottom 0.3s;
+	position: relative;
+	z-index: 1000;
+}
+
+.menu button {
+	width: 300px;
+	margin-left: -87px;
+	color: black;
+}
+
+.menu span {
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.menu span:hover {
+	color: #ff1616;
+}
+
+.menu .sub {
+	display: none;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	overflow: hidden;
+	z-index: 1200;
+	width: 200px;
+	right: 0;
+	top: 100%;
+	transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+	display: block;
+	transform: translateX(0);
+}
+
+.menu .sub li {
+	border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+	border-top: none;
+}
+
+.menu .sub li a {
+	display: block;
+	padding: 10px 20px;
+	text-decoration: none;
+	color: black;
+	transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+	background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+	0% {
+		transform: translateY(-70%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 
 .container {
 	width:100%;
 	max-width:800px;
+	height: auto;
 	display:flex;
 	flex-direction:column;
 	align-items:center;
+	margin-bottom: 300px;
 }
 
 .optionDiv {
-	width:80%;
-	height:100px;
+	margin-top:30px;
+	width:200px;
+	height:50px;
+	border-radius:20px ;
 	display:flex;
 	justify-content:space-around;
+	background-color: #EBEBEB;
 }
 
-.btnDiv {
-	width:250px;
+.bookOptionDiv {
+	width:100px;
+	height:50px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 }
 
-.btnDiv form {
+.waitOptionDiv {
+	width:100px;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.bookOptionDiv button {
 	display:block;
+	width:100%;
+	height:100%;
+	background-color: #ff1616;
+	border: none;
+	border-radius: 20px;
+	color:white;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.waitOptionDiv form {
 	width:100%;
 	height:100%;
 }
 
-#btn {
+.waitOptionDiv form button {
 	display:block;
 	width:100%;
 	height:100%;
-	border:none;
-	cursor:pointer;
-	border-radius:20px;
+	border: none;
+	border-radius: 20px;
+	background-color: #EBEBEB;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
 }
 
 .contentDiv {
 	width:100%;
-	height:1000px;
+	height:auto;
 }
 
 .labelDiv {
@@ -116,7 +237,7 @@ body {
 
 .bookDiv {
 	width:100%;
-	height:250px;
+	height:200px;
 	margin-top: 20px;
 	background-color:#fff;
 	display:flex;
@@ -128,29 +249,29 @@ body {
 
 .bookContent {
 	padding-left:50px;
-	width:300px;
-	height:100%;
+	width:600px;
+	height:90%;
 }
 
 .status {
 	width:100px;
-	height:30px;
+	height:25px;
 	background-color:#EBEBEB;
 	display:flex;
 	justify-content:center;
 	align-items:center;
-	margin-top:30px;
+	margin-top:15px;
 	margin-bottom:10px;
 }
 
 .bookContentDiv {
-	width:500px;
+	width:600px;
 	display: flex;
 }
 
 .bookContentHead {
-	width:100px;
-	height:30px;
+	width:150px;
+	height:25px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
@@ -160,21 +281,21 @@ body {
 }
 
 .bookContentTail {
-	width:300px;
-	height:100px;
+	width:250px;
+	height:80px;
 	background-color:#EBEBEB;
 }
 
 .bookContentRequirement {
-	width:150px;
-	height:100px;
+	width:350px;
+	height:80px;
 	background-color:#EBEBEB;
 }
 
 .bookBtnDiv {
 	width:100px;
 	height:50px;
-	margin-right:50px;
+	margin-right:20px;
 }
 
 .bookBtnDiv button {
@@ -187,6 +308,8 @@ body {
 	border-radius:20px;
 	color:white;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	font-size: 15px;
+	font-weight: bold;
 }
 
 .bookBtnDiv button:disabled {
@@ -194,4 +317,58 @@ body {
 	border-radius:20px;
 	color:gray;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+
+footer{
+	width:100%;
+	background-color:#fff7ed;
+	bottom: 0;
+	position: relative;
+	left: 0;
+}
+
+.footerContainer {
+	margin : 20px auto;
+	text-align: center;
+	border-top:1px solid #ff1616 ;
+
+}
+.footerContainer > div>div>span>img {
+	margin : 0 auto;
+	vertical-align: middle;
+	float:left;
+}
+.logoFont {
+	font-family: "Black Han Sans", sans-serif;
+	height: 40px;
+}
+
+.footerLogo > span > select{
+	width : 180px;
+	height: 40px;
+	font-size: 13pt;
+	float : right;
+}
+
+.workLinks > ul{
+	margin-right:30px;
+}
+
+.workLinks > ul > li {
+	display: inline-block;
+	margin-top : 20px;
+	font-size: 10.6px;
+}
+.footerLogo {
+	margin: 0 auto;
+	width : 980px;
+}
+.footersen {
+	font-size: 11px;
+	text-align: left;
+	margin-left:170px;
+}
+.footersen>div{
+	margin-top: 7px;
 }

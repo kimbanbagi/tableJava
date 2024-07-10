@@ -15,12 +15,51 @@
         <result property="review" column="review" />
         <result property="createdDate" column="created_date" />
         <result property="updatedDate" column="updated_date" />
+        <result property="written" column="written_status" />
     </resultMap>
 
-    <insert id="addReview" parameterType="dc.human.kimbanbagi.tableJava.review.vo.ReviewVO">
+    <insert id="reviewInit" parameterType="dc.human.kimbanbagi.tableJava.book.vo.BookVO">
         <![CDATA[
-            insert into review(restaurant_id, restaurant_name, user_id, review )
-            values (#{rId}, #{rName}, #{uId}, #{review})
+            INSERT INTO review (
+                                restaurant_id,
+                                restaurant_name,
+                                reservation_date,
+                                reservation_time,
+                                user_id,
+                                review,
+                                star
+            ) VALUES (
+                      #{rId}, #{rName}, #{rDate}, #{rTime},#{uId},'','0'
+                     )
         ]]>
     </insert>
+
+    <update id="addReview" parameterType="String">
+        <![CDATA[
+            UPDATE review SET
+                              review = #{review},
+                              star = #{star}
+            WHERE user_id=#{userId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
+
+    <select id="getReviewList" resultMap="review">
+        <![CDATA[
+            SELECT *
+            FROM review
+            WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL
+        ]]>
+    </select>
+
+    <select id="randomReview" resultMap="review" parameterType="String">
+        <![CDATA[
+            SELECT * FROM (
+                SELECT * FROM review
+                         WHERE restaurant_id=#{restaurantId} order by DBMS_RANDOM.RANDOM
+                          )
+            WHERE ROWNUM<=1
+        ]]>
+    </select>
+
+
 </mapper>

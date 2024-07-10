@@ -7,4 +7,7 @@ import java.util.List;
 public interface UserRestaurantService {
     public List<RestaurantVO> findRestaurant(String keywords);
     public RestaurantVO getRestaurantDetail(String restaurantId);
+    public int addRevCount(String restaurantId);
+    public List<RestaurantVO> recommendList();
+    public RestaurantVO randomRestaurant();
 }

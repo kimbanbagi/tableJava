@@ -1,0 +1,269 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+}
+
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    animation: navbarBottom 1s forwards;
+    z-index: 1000;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
+}
+
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+    z-index: 1000;
+}
+
+.menu button {
+    width: 300px;
+    margin-left: -87px;
+    color: black;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
+    color: #ff1616;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1200;
+    width: 200px; /* Set a fixed width or match the width of the submenu content */
+    right: 0; /* Align the submenu to the right of the menu */
+    top: 100%;
+    /* transform: translateX(100%); */
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.sub button {
+    color: black;
+
+}
+.container {
+    width:100%;
+    height:800px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.containerDiv {
+    width:800px;
+    height:700px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    margin-top:30px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 20px;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.searchBar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.searchBar .search-button {
+    background-color: #ff1616;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchBar .search-button:hover {
+    background-color: #d71313;
+}
+.search_result {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.searchIcon img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.search-form.active {
+    display: flex;
+}
+
+.search-form {
+    display: none;
+}
+
+
+.resultDiv {
+    width:600px;
+    height:100px;
+    padding:10px;
+    margin-left:10px;
+    background-color: whitesmoke;
+    border-radius: 20px;
+}
+
+.labelDiv {
+    margin: 10px;
+}
+
+.labelDiv h3 {
+    margin:0;
+}
+
+.btnDiv {
+    margin-left:10px;
+}
+
+.btnDiv button {
+    height:35px;
+    border:none;
+    background-color: #ff1616;
+    border-radius: 20px;
+    color:white;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}

@@ -15,4 +15,7 @@ public interface RestaurantDAO {
     public int addRestaurant(RestaurantVO restaurantVO) throws DataAccessException;
     public int updateRegister(String userId) throws DataAccessException;
     public RestaurantVO getRestaurantDetail(String restaurantId) throws DataAccessException;
+    public int addRevCount(String restaurantId) throws DataAccessException;
+    public List<RestaurantVO> recommendList() throws DataAccessException;
+    public RestaurantVO randomRestaurant() throws DataAccessException;
 }

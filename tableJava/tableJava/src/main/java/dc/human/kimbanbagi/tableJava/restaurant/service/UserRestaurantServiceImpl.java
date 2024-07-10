@@ -31,4 +31,19 @@ public class UserRestaurantServiceImpl implements UserRestaurantService {
         return restaurantDAO.getRestaurantDetail(restaurantId);
     }
 
+    @Override
+    public int addRevCount(String restaurantId){
+        return restaurantDAO.addRevCount(restaurantId);
+    }
+
+    @Override
+    public List<RestaurantVO> recommendList(){
+        return restaurantDAO.recommendList();
+    }
+
+    @Override
+    public RestaurantVO randomRestaurant(){
+        return restaurantDAO.randomRestaurant();
+    }
+
 }

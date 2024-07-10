@@ -10,7 +10,7 @@
         <result property="uPwd" column="user_pwd" />
         <result property="uName" column="user_name" />
         <result property="uNumber" column="Phone_number" />
-        <result property="uImage" column="user_image" />
+        <result property="fileName" column="user_image" />
         <result property="uRole" column="user_role" />
         <result property="register" column="store_register" />
         <result property="withdrawal" column="withdrawal_status" />
@@ -19,15 +19,28 @@
     <select id="getOwnerInfo" resultMap="owner">
         <![CDATA[
             SELECT
+                user_id,
                 user_email,
                 user_pwd,
                 user_name,
                 phone_number,
                 user_role,
                 store_register,
-                withdrawal_status
+                withdrawal_status,
+                user_image
             FROM users
             WHERE user_id=#{userId}
         ]]>
     </select>
+
+    <update id="updateProfile" parameterType="dc.human.kimbanbagi.tableJava.common.vo.UserVO">
+        <![CDATA[
+            UPDATE users
+                SET
+                    user_email=#{uEmail},
+                    phone_number=#{uNumber},
+                    user_image=#{fileName}
+            WHERE user_id=#{uId}
+        ]]>
+    </update>
 </mapper>

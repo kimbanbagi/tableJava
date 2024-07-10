@@ -17,14 +17,17 @@ import dc.human.kimbanbagi.tableJava.wait.vo.WaitVO;
 
 import dc.human.kimbanbagi.tableJava.restaurant.vo.RestaurantVO;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -57,6 +60,17 @@ public class UserControllerImpl implements UserController {
 
             mav.addObject("user", user);
             mav.addObject("userId", userId);
+
+            List<RestaurantVO> recommendList = userRestaurantService.recommendList();
+            mav.addObject("recommendList", recommendList);
+
+            RestaurantVO randomRestaurant = userRestaurantService.randomRestaurant();
+            String randomRId = randomRestaurant.getrId();
+            ReviewVO randomReview = reviewService.randomReview(randomRId);
+
+            mav.addObject("randomRestaurant", randomRestaurant);
+            mav.addObject("randomReview", randomReview);
+
             mav.setViewName("userMain");
 
         }catch(Exception e){
@@ -114,6 +128,8 @@ public class UserControllerImpl implements UserController {
             UserVO user = userService.getUserInfo(userId);
             List<BookVO> history = userBookService.getHistory(userId);
 
+
+
             mav.addObject("user", user);
             mav.addObject("history", history);
             mav.setViewName("userMyPage");
@@ -169,17 +185,43 @@ public class UserControllerImpl implements UserController {
     @Override
     @RequestMapping(method = RequestMethod.POST,value = "/review")
     public ModelAndView review(
-            @ModelAttribute ReviewVO review
+            @RequestParam(name="uId") String userId,
+            @RequestParam(name="rId") String restaurantId,
+            @RequestParam(name="review") String review,
+            @RequestParam(name="star") String star
     ){
         ModelAndView mav = new ModelAndView();
+
         try{
             int result = 0;
-            result = reviewService.addReview(review);
+
+            result = reviewService.addReview(userId, restaurantId, review,star);
 
             if(result == 0){
                 //error
             } else{
-                mav.setViewName("userMyPage");
+
+                result = userRestaurantService.addRevCount(restaurantId);
+
+                if(result == 0){
+                    //error
+                }else {
+
+                    result = userBookService.updateWritten(userId, restaurantId);
+
+                    if(result == 0){
+                        //error
+                    }else {
+                        UserVO user = userService.getUserInfo(userId);
+                        List<BookVO> history = userBookService.getHistory(userId);
+
+                        mav.addObject("user", user);
+                        mav.addObject("userId",userId);
+                        mav.addObject("history", history);
+                        mav.setViewName("userMyPage");
+                    }
+
+                }
             }
 
         } catch(Exception e){
@@ -204,6 +246,7 @@ public class UserControllerImpl implements UserController {
             e.printStackTrace();
         }
 
+        mav.addObject("keywords", keywords);
         mav.addObject("userId", userId);
         mav.setViewName("search");
 
@@ -214,7 +257,8 @@ public class UserControllerImpl implements UserController {
     @RequestMapping(method = RequestMethod.POST, value="/restaurantDetail")
     public ModelAndView restaurantDetail(
             @RequestParam(name="userId") String userId,
-            @RequestParam(name="restaurantId") String restaurantId
+            @RequestParam(name="restaurantId") String restaurantId,
+            @RequestParam(name="keywords") String keywords
     ){
         ModelAndView mav = new ModelAndView();
 
@@ -222,13 +266,19 @@ public class UserControllerImpl implements UserController {
             RestaurantVO restaurant = userRestaurantService.getRestaurantDetail(restaurantId);
             mav.addObject("restaurant", restaurant);
 
+            List<ReviewVO> reviewList = reviewService.getReviewList(restaurantId);
+
+            mav.addObject("userId", userId);
+            mav.addObject("restaurantId", restaurantId);
+            mav.addObject("keywords", keywords);
+            mav.addObject("reviewList", reviewList);
+
+            mav.setViewName("restaurantDetail");
+
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        mav.addObject("userId", userId);
-        mav.addObject("restaurantId", restaurantId);
-        mav.setViewName("restaurantDetail");
         return mav;
     }
 
@@ -240,6 +290,17 @@ public class UserControllerImpl implements UserController {
             @RequestParam(name="restaurantName") String restaurantName
     ){
         ModelAndView mav = new ModelAndView();
+
+        try{
+            RestaurantVO restaurant = userRestaurantService.getRestaurantDetail(restaurantId);
+            UserVO user = userService.getUserInfo(userId);
+
+            mav.addObject("restaurant", restaurant);
+            mav.addObject("user", user);
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
 
         mav.addObject("userId", userId);
         mav.addObject("restaurantId", restaurantId);
@@ -296,11 +357,13 @@ public class UserControllerImpl implements UserController {
                 result = notificationService.addBookNotification(book);
 
                 if(result == 1){
+
                     mav.addObject("book", book);
                     mav.addObject("userId", userId);
                     mav.setViewName("bookSuccess");
+
                 }else {
-                    //error
+                    // error
                 }
 
             }
@@ -312,7 +375,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    @RequestMapping(method = RequestMethod.POST, value="/bookCancelFromUser")
+    @RequestMapping(method = RequestMethod.POST, value="/cancelBook")
     public ModelAndView cancelBook (
             @RequestParam(name="userId") String userId,
             @RequestParam(name="restaurantId") String restaurantId,
@@ -384,4 +447,93 @@ public class UserControllerImpl implements UserController {
 
         return mav;
     }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST, value="/cancelWait")
+    public ModelAndView cancelWait (
+            @RequestParam(name="userId") String userId,
+            @RequestParam(name="restaurantId") String restaurantId,
+            @RequestParam(name="restaurantName") String restaurantName
+    ){
+        ModelAndView mav = new ModelAndView();
+
+        try {
+
+            int result = 0;
+            result = userWaitService.cancelWait(userId, restaurantId);
+
+            if(result == 0) {
+                // error
+            }else {
+
+                result = notificationService.waitCancelFromUser(userId, restaurantId, restaurantName);
+
+                if(result == 1){
+                    List<WaitVO> waitList = userWaitService.getUserWaitList(userId);
+
+                    mav.addObject("waitList", waitList);
+                    mav.setViewName("userWaitList");
+                }
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        mav.addObject("userId", userId);
+
+        return mav;
+    }
+
+    @Override
+    @RequestMapping(method = RequestMethod.POST, value="/updateUserProfile")
+    public ModelAndView updateProfile(
+            @RequestParam(name="userId") String userId,
+            @ModelAttribute() UserVO user
+    ) {
+        ModelAndView mav = new ModelAndView();
+
+        String msg = "";
+
+        try {
+            int result = 0;
+
+            MultipartFile file = user.getuImage();
+            String CURR_IMAGE_REPO_PATH = "C:/tableJava_files/user/profile/";
+            file.transferTo(new File(CURR_IMAGE_REPO_PATH+ file.getOriginalFilename()));
+
+            String relativePath = "/files/user/profile/";
+
+            user.setFileName(relativePath + file.getOriginalFilename());
+
+            result = userService.updateProfile(user);
+
+            if(result == 1){
+                msg = "프로필이 변경 되었습니다.";
+
+                mav.addObject("msgSuccess", msg);
+
+            }else {
+                msg = "변경 사항 저장에 실패했습니다.";
+
+                mav.addObject("msgFailed", msg);
+            }
+
+            UserVO userInfo = userService.getUserInfo(userId);
+            List<BookVO> history = userBookService.getHistory(userId);
+
+            mav.addObject("user", userInfo);
+            mav.addObject("history", history);
+            mav.addObject("userId", userId);
+
+            mav.setViewName("userMyPage");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return mav;
+    }
+
+
 }

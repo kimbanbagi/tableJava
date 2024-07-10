@@ -16,8 +16,10 @@
                                user_role,
                                store_register,
                                withdrawal_status,
+                               grade,
                                created_id,
-                               created_date
+                               created_date,
+                               user_image
             ) values (
                       #{uId},
                       #{uPwd},
@@ -27,8 +29,10 @@
                       #{uRole},
                       #{register},
                       #{withdrawal},
+                      #{grade},
                       #{uId},
-                      #{createdDate}
+                      #{createdDate},
+                      #{fileName}
                      )
         ]]>
     </insert>

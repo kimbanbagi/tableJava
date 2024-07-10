@@ -26,6 +26,15 @@ public class OwnerRestaurantServiceImpl implements OwnerRestaurantService {
     @Override
     public int addRestaurant(RestaurantVO restaurant){
         restaurant.setCreatedDate(sqlDate);
+        restaurant.setRevCount("0");
+
+        if(restaurant.getrStatus()==null || restaurant.getrStatus().isEmpty()){
+            restaurant.setrStatus("F");
+        }
+
+        if(restaurant.getwStatus()==null || restaurant.getwStatus().isEmpty()){
+            restaurant.setwStatus("F");
+        }
 
         return restaurantDAO.addRestaurant(restaurant);
     }

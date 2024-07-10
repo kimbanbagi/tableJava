@@ -14,6 +14,26 @@
         if(msg != null && msg != ""){
             alert(msg);
         }
+
+        const hypenNum = (target) => {
+            target.value = target.value
+                .replace(/[^0-9]/g, '')
+                .replace(/^(\d{3})(\d{2})(\d{5})$/, `$1-$2-$3`);
+        }
+
+        const hypenTel = (target) => {
+            target.value = target.value
+                .replace(/[^0-9]/g, '')
+                .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+        }
+
+        if(document.getElementById("rStatus").checked){
+            document.getElementById("rStatus_hidden").disabled = true;
+        }
+
+        if(document.getElementById("wStatus").checked){
+            document.getElementById("wStatus_hidden").disabled = true;
+        }
     </script>
 </head>
 <body>
@@ -24,33 +44,33 @@
         	<input type="hidden" name="uId" value="${userId }">
             <div class="form-group">
                 <label for="rId">사업자 번호 : </label>
-                <input type="text" id="rId" name="rId" required>
+                <input type="text" oninput="hypenNum(this)" id="rId" name="rId" maxlength="12" placeholder="012-34-56789 숫자만 입력" required>
             </div>
             <div class="form-group">
                 <label for="rName">식당 이름 : </label>
-                <input type="text" id="rName" name="rName" required>
+                <input type="text" id="rName" name="rName" maxlength="25" required>
             </div>
             <div class="form-group">
                 <label for="rHead">총 수용 인원 : </label>
-                <input type="text" id="rHead" name="rHead" required>
+                <input type="text" id="rHead" pattern="^[0-9]+$" name="rHead" maxlength="3" placeholder="숫자만 입력" required>
             </div>
             <div class="form-group">
                 <label for="rCity">도시 : </label>
-                <input type="text" id="rCity" name="rCity" placeholder="시 제외 도시 명만 입력. 예) 천안, 아산" required>
+                <input type="text" id="rCity" name="rCity" maxlength="5" placeholder="시 제외 도시 명만 입력. 예) 천안, 아산" required>
             </div>
             <div class="form-group">
                 <label for="rAddress">상세 주소:</label>
-                <input type="text" id="rAddress" name="rAddress" required>
+                <input type="text" id="rAddress" maxlength="100" name="rAddress" required>
             </div>
             <div class="form-group">
                 <label for="rNumber">식당 전화번호:</label>
-                <input type="text" id="rNumber" name="rNumber" required>
+                <input type="text" oninput="hypenTel(this)" id="rNumber" maxlength="13" placeholder="010-123-456" name="rNumber" required>
             </div>
             <div class="inline-group">
                 <label for="rStatus">예약 여부 : </label>
-                <input type="checkbox" id="rStatus" name="rStatus" value="예약" checked>
+                <input type="checkbox" id="rStatus" name="rStatus" value="T">
                 <label for="wStatus">웨이팅 여부 : </label>
-                <input type="checkbox" id="wStatus" name="wStatus" value="웨이팅">
+                <input type="checkbox" id="wStatus" name="wStatus" value="T">
             </div>
             <div class="form-group">
                 <label for="rPhoto">식당 사진 : </label>
@@ -61,13 +81,5 @@
             </div>
         </form>
     </div>
-    
-    <script>
-    	var btn = document.getElementById('registerBtn');
-    	
-    	btn.addEventListener('click', ()=> {
-    		alert("식당 등록이 완료 되었습니다.");
-    	});
-    </script>
 </body>
 </html>

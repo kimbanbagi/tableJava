@@ -1,0 +1,467 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    animation: navbarBottom 1s forwards;
+    z-index: 1000;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
+}
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+    z-index: 1000;
+
+}
+
+.menu button {
+    width: 300px;
+    margin-left: -87px;
+    color: black;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
+    color: #ff1616;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1200;
+    width: 200px;
+    right: 0;
+    top: 100%;
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+    width:180px;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.container {
+    width:100%;
+    height:400px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 100px;
+    margin-top:50px;
+}
+
+.containerDiv {
+    width:1000px;
+    height:450px;
+    background-color: #EBEBEB;
+    margin-top:30px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    position: relative;
+    border-radius: 10px;
+}
+
+.titleDiv {
+    width:80%;
+    height:50px;
+    margin-top:30px;
+    margin-left:100px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.search-box {
+    width: 300px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ff1616;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+}
+
+.search-form input[type="text"]:focus {
+    border-bottom: 2px solid #ff1616;
+}
+
+.search-form input[type="text"]::placeholder {
+    color: #999;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ff1616;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #e01414;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.list-section {
+    margin-left: 100px;
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+}
+
+.prev-controls,
+.next-controls {
+    position: absolute;
+    top: 53%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.prev-controls {
+    left: 10px;
+
+}
+
+.next-controls {
+    right: 20px;
+}
+
+.controls button {
+    background-color: #0f7700;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.controls button:hover {
+    background-color: #e01414;
+}
+
+.labelDiv {
+    width: 300px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+
+
+.listDiv-container {
+    width: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.listDiv-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+    position: relative;
+}
+
+.listDiv {
+    cursor: pointer;
+    flex: 0 0 auto;
+    width: 300px;
+    height: 280px;
+    border-radius: 15px;
+    /*margin-top: 20px;*/
+    margin-right: 20px;
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+
+}
+
+.listDiv-list {
+    width: 100%;
+    height: 250px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#listDivImage {
+    width: 100px;
+    height: 110px;
+    background-color: white;
+}
+
+#listDivImage img {
+    height:100%;
+    border-radius: 20px;
+}
+
+.listDiv-list div {
+    width: 200px;
+    margin-top: 10px;
+}
+
+.lowerDiv {
+    width:100%;
+    height:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todayRestaurantDiv {
+    background-color: #EBEBEB;
+    width:1000px;
+    height:200px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.labelDiv_ {
+    background-color:yellow;
+    width:150px;
+    height:27px;
+    margin:10px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.todayRestaurant{
+    width:100%;
+    height:150px;
+    display: flex;
+}
+
+.resDiv {
+    width:50%;
+    height:90%;
+    background-color: lightgoldenrodyellow;
+}
+
+.resDiv div {
+    margin-left: 20px;
+    margin-right:20px;
+}
+
+.resDiv div img {
+    float: left;
+    height:20px;
+    margin-right: 5px;
+}
+
+.resDiv h2 {
+    margin:5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.resDiv div h4 {
+    margin:5px;
+}
+
+.reviewDiv {
+    width:50%;
+    height:90%;
+    background-color: white;
+    overflow-y: auto;
+}
+
+.reviewDiv div {
+    margin-left: 20px;
+    margin-right:20px;
+    padding-right: 10px;
+}
+
+.reviewDiv div img {
+    height:20px;
+    float: left;
+    margin-right: 5px;
+}
+
+.reviewDiv div h3 {
+    margin:10px;
+    margin-bottom: 15px;
+}
+
+.reviewDiv div h4 {
+    margin:0;
+}
+
+/* 다크 모드 */
+.dark-mode {
+    background-color: #1e1f21;
+    color: black;
+}
+
+.dark-mode .containerDiv {
+    background-color: #272829;
+    color: white;
+}
+
+.dark-mode .search-box input::placeholder{
+    color: white;
+}
+
+.dark-mode .listDiv {
+    color: black;
+}
+
+.dark-mode .todayRestaurantDiv {
+    background-color: #272829;
+}
+.dark-mode .nav.navbar_main {
+    background-color: #313233;
+}
+
+.dark-mode .nav {
+    background-color: #313233;
+}

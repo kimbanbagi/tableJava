@@ -16,6 +16,8 @@ public class JoinServiceImpl implements JoinService {
     @Autowired
     private JoinDAO joinDAO;
 
+    String PROFILE_IMAGE_INIT_PATH = "image/user.png";
+
     java.util.Date now = new java.util.Date();
     Date sqlDate = new Date(now.getTime());
 
@@ -31,12 +33,19 @@ public class JoinServiceImpl implements JoinService {
             user.setuRole("O");
         }
 
-        // 가게 등록 여부 설정
+        // 가게 등록 여부 초기 설정
         user.setRegister("F");
 
-        // 회원 탈퇴 여부 설정
+        // 회원 탈퇴 여부 초기 설정
         user.setWithdrawal("F");
 
+        // 회원 등급 초기 설정
+        user.setGrade("A");
+
+        // 프로필 기본 이미지 설정
+        user.setFileName(PROFILE_IMAGE_INIT_PATH);
+
+        // createdDate 설정
         user.setCreatedDate(sqlDate);
 
         return joinDAO.addJoin(user);

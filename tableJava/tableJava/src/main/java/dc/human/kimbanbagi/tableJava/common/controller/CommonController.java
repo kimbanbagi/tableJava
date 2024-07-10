@@ -10,6 +10,7 @@ public interface CommonController {
     public ModelAndView joinPage();
     public ModelAndView findIDPage();
     public ModelAndView findPWPage();
+    public ModelAndView changePwdPage(@RequestParam(name="userId") String userId);
 
     public ModelAndView login(
             @RequestParam(name="userId") String userId,
@@ -28,6 +29,14 @@ public interface CommonController {
             @RequestParam(name="userId") String userId,
             @RequestParam(name="userName") String uName
     );
+
+    public ModelAndView updatePwd(
+            @RequestParam(name="userId") String userId,
+            @RequestParam(name="currPwd") String currPwd,
+            @RequestParam(name="newPwd") String newPwd
+    );
+
+    public ModelAndView logout();
 
 
 }

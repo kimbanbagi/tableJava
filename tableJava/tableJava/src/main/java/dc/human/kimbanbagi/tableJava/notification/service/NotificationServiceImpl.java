@@ -67,6 +67,7 @@ public class NotificationServiceImpl implements NotificationService{
             NotificationVO nVo_ = new NotificationVO();
 
             nVo_.setrId(book.getrId());
+            nVo_.setuId(book.getuId());
             nVo_.setrName(book.getrName());
             nVo_.setComments(Comments.O_BOOK_A.getValue());
             nVo_.setCreatedDate(sqlDate);
@@ -81,6 +82,7 @@ public class NotificationServiceImpl implements NotificationService{
 
     }
 
+    @Override
     public int bookCancelFromUser(
             String userId, String restaurantId, String restaurantName
     ){
@@ -100,6 +102,7 @@ public class NotificationServiceImpl implements NotificationService{
 
             nVo_.setrId(restaurantId);
             nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
             nVo_.setComments(Comments.U_BOOK_C.getValue());
             nVo_.setCreatedDate(sqlDate);
 
@@ -113,6 +116,88 @@ public class NotificationServiceImpl implements NotificationService{
 
     }
 
+    @Override
+    public int confirmBookNotification(
+            String userId, String restaurantName
+    ) {
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.BOOK_C.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        return notificationDAO.addUserNotification(nVo);
+    }
+
+    @Override
+    public int bookCancelFromOwner(
+            String userId, String restaurantId, String restaurantName
+    ){
+        int result = 0;
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.O_BOOK_C.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        result = notificationDAO.addUserNotification(nVo);
+
+        if(result == 1){
+            NotificationVO nVo_ = new NotificationVO();
+
+            nVo_.setrId(restaurantId);
+            nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
+            nVo_.setComments(Comments.C_BOOK.getValue());
+            nVo_.setCreatedDate(sqlDate);
+
+            result = notificationDAO.addOwnerNotification(nVo_);
+        }else {
+            result = 0;
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public int endBookNotification(
+            String userId, String restaurantId, String restaurantName
+    ){
+        int result = 0;
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.BOOK_E.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        result = notificationDAO.addUserNotification(nVo);
+
+        if(result == 1){
+            NotificationVO nVo_ = new NotificationVO();
+
+            nVo_.setrId(restaurantId);
+            nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
+            nVo_.setComments(Comments.BOOK_E.getValue());
+            nVo_.setCreatedDate(sqlDate);
+
+            result = notificationDAO.addOwnerNotification(nVo_);
+        }else {
+            result = 0;
+        }
+
+        return result;
+
+    }
+
+    @Override
     public int addWaitNotification(WaitVO wait){
         int result = 0;
 
@@ -134,6 +219,7 @@ public class NotificationServiceImpl implements NotificationService{
             nVo_.setrName(wait.getrName());
             nVo_.sethCount(wait.gethCount());
             nVo_.setwNumber(wait.getwNumber());
+            nVo_.setuId(wait.getuId());
             nVo_.setComments(Comments.O_WAIT_A.getValue());
             nVo_.setCreatedDate(sqlDate);
 
@@ -144,4 +230,116 @@ public class NotificationServiceImpl implements NotificationService{
 
         return result;
     }
+
+    @Override
+    public int confirmWaitNotification(String userId, String restaurantName){
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.WAIT_C.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        return notificationDAO.addUserNotification(nVo);
+
+    }
+
+    @Override
+    public int waitCancelFromUser(
+            String userId, String restaurantId, String restaurantName
+    ){
+
+        int result = 0;
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.C_WAIT.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        result = notificationDAO.addUserNotification(nVo);
+
+        if(result == 1){
+            NotificationVO nVo_ = new NotificationVO();
+
+            nVo_.setrId(restaurantId);
+            nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
+            nVo_.setComments(Comments.U_WAIT_C.getValue());
+            nVo_.setCreatedDate(sqlDate);
+
+            result = notificationDAO.addOwnerNotification(nVo_);
+        }else {
+            result = 0;
+        }
+
+        return result;
+
+    }
+
+    @Override
+    public int waitCancelFromOwner(
+            String userId, String restaurantId, String restaurantName
+    ){
+        int result = 0;
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.O_WAIT_C.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        result = notificationDAO.addUserNotification(nVo);
+
+        if(result == 1){
+            NotificationVO nVo_ = new NotificationVO();
+
+            nVo_.setrId(restaurantId);
+            nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
+            nVo_.setComments(Comments.C_WAIT.getValue());
+            nVo_.setCreatedDate(sqlDate);
+
+            result = notificationDAO.addOwnerNotification(nVo_);
+        }else {
+            result = 0;
+        }
+
+        return result;
+    }
+
+    @Override
+    public int endWaitNotification(
+            String userId, String restaurantId, String restaurantName
+    ){
+        int result = 0;
+
+        NotificationVO nVo = new NotificationVO();
+
+        nVo.setuId(userId);
+        nVo.setrName(restaurantName);
+        nVo.setComments(Comments.WAIT_E.getValue());
+        nVo.setCreatedDate(sqlDate);
+
+        result = notificationDAO.addUserNotification(nVo);
+
+        if(result == 1){
+            NotificationVO nVo_ = new NotificationVO();
+
+            nVo_.setrId(restaurantId);
+            nVo_.setrName(restaurantName);
+            nVo_.setuId(userId);
+            nVo_.setComments(Comments.WAIT_E.getValue());
+            nVo_.setCreatedDate(sqlDate);
+
+            result = notificationDAO.addOwnerNotification(nVo_);
+        }else {
+            result = 0;
+        }
+        return result;
+    }
+
 }

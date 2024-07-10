@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,18 +15,18 @@
     	</div>
         <div class="second">
         	<div class="second_msg">고객님의 아이디는 다음과 같습니다.</div> 
-        	<div class="second_id"><strong>${id }</strong></div>
+        	<div class="second_id" style="font-weight: bold; font-size: 25px;">${userId }</div>
         </div>
         <div class="btn">
         	<div>
 				<form action="loginPage" method="post">
-					<button type="submit">로그인</button>
+					<button type="submit" style="font-weight: bold; font-size: 16px;">로그인</button>
 				</form>
 
         	</div>
         	<div>
 				<form action="findPWPage" method="post">
-					<button type="submit">비밀번호 찾기</button>
+					<button type="submit" style="font-weight: bold; font-size: 16px;">비밀번호 찾기</button>
 				</form>
 
         	</div>

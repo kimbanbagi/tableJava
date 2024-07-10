@@ -1,5 +1,7 @@
 package dc.human.kimbanbagi.tableJava.restaurant.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Date;
 
 public class RestaurantVO {
@@ -9,12 +11,38 @@ public class RestaurantVO {
     String rCity;
     String rAddress;
     String rNumber;
-    String rPhoto;
     String uId;
     String rStatus;
     String wStatus;
     Date createdDate;
     Date updatedDate;
+    MultipartFile rPhoto;
+    String fileName;
+    String revCount;
+
+    public String getRevCount() {
+        return revCount;
+    }
+
+    public void setRevCount(String revCount) {
+        this.revCount = revCount;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public MultipartFile getrPhoto() {
+        return rPhoto;
+    }
+
+    public void setrPhoto(MultipartFile rPhoto) {
+        this.rPhoto = rPhoto;
+    }
 
     public Date getCreatedDate() {
         return createdDate;
@@ -70,14 +98,6 @@ public class RestaurantVO {
 
     public void setrAddress(String rAddress) {
         this.rAddress = rAddress;
-    }
-
-    public String getrPhoto() {
-        return rPhoto;
-    }
-
-    public void setrPhoto(String rPhoto) {
-        this.rPhoto = rPhoto;
     }
 
     public String getuId() {

@@ -72,6 +72,37 @@
                       #{wStatus}
                      )
         ]]>
-
     </insert>
+
+    <update id="confirmWait" parameterType="String">
+        <![CDATA[
+            UPDATE waiting SET
+                          waiting_status='1'
+            WHERE user_id=#{waitId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
+
+    <update id="cancelWaitFromUser" parameterType="String">
+        <![CDATA[
+        UPDATE waiting SET
+            waiting_status='2'
+        WHERE user_id=#{userId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
+
+    <update id="cancelWaitFromOwner" parameterType="String">
+        <![CDATA[
+        UPDATE waiting SET
+            waiting_status='3'
+        WHERE user_id=#{waitId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
+
+    <update id="endWait" parameterType="String">
+        <![CDATA[
+        UPDATE waiting SET
+            waiting_status='4'
+        WHERE user_id=#{waitId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
 </mapper>

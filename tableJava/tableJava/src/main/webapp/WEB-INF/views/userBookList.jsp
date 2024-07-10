@@ -25,7 +25,7 @@
 
 		$.ajax({
 			type : "POST",
-			url : "bookCancelFromUser",
+			url : "cancelBook",
 			data : {
 				userId : userId,
 				restaurantId : restaurantId,
@@ -42,6 +42,20 @@
 			}
 		});
 	}
+
+	$(document).ready(function() {
+		let subToggle = true;
+
+		$(".menu").click(function() {
+			const $submenu = $(".sub");
+			if (subToggle) {
+				$submenu.stop().slideDown(300);
+			} else {
+				$submenu.stop().slideUp(300);
+			}
+			subToggle = !subToggle;
+		});
+	});
 </script>
 </head>
 <body>
@@ -62,17 +76,36 @@
 				<button type="submit">마이 페이지</button>
 			</form>
 		</div>
+		<div class="menu">
+			<span>☰</span>
+			<ul class="sub">
+				<li>
+					<button>다크 모드</button>
+				</li>
+				<li>
+					<form method="post" action="changePwdPage">
+						<input type="hidden" name="userId" value="${userId}">
+						<button type="submit">비밀번호 변경</button>
+					</form>
+				</li>
+				<li>
+					<form method="post" action="logout">
+						<button type="submit">로그아웃</button>
+					</form>
+				</li>
+			</ul>
+		</div>
 	</div>
 
 	<div class="container">
 		<div class="optionDiv">
-			<div class="btnDiv">
-				<button onclick="location.reload()">예약 내역</button>
+			<div class="bookOptionDiv">
+				<button onclick="location.reload()">예약</button>
 			</div>
-			<div class="btnDiv">
+			<div class="waitOptionDiv">
 				<form method="post" action="userWaitListPage">
 					<input type="hidden" name="userId" value="${userId }">
-					<button type="submit">웨이팅 내역</button>
+					<button type="submit">웨이팅</button>
 				</form>
 			</div>
 		</div>
@@ -91,11 +124,12 @@
 							<div class="bookContentTail">
 								일정  ${book.rDate } ${book.rTime } <br>
 								성함  ${book.uName} <br>
-								인원  ${book.aCount + book.kCount } <br>
+								인원  ${book.aCount + book.kCount }명 <br>
+								( 성인 ${book.aCount}명 + 유아 ${book.kCount}명 )
 							</div>
 							<div class="bookContentRequirement">
 								유모차  ${book.sCount } <br>
-								휠체어  ${book.wCount} <br>
+								휠체어  ${book.wCount} <br><br>
 								요청 사항 <br>
 									${book.requirements }
 							</div>
@@ -116,5 +150,26 @@
 			</c:forEach>
 		</div>
 	</div>
+	<footer class="footerContainer">
+		<div class="workLinks">
+			<ul>
+				<li><a href="">회사소개</a>&emsp;|&nbsp;</li>
+				<li><a href="">이용약관</a>&emsp;|&nbsp;</li>
+				<li><a href="">개인정보처리방침</a>&emsp;|&nbsp;</li>
+				<li><a href="">이메일무단수집거부</a>&emsp;|&nbsp;</li>
+				<li><a href="">고정형 영상정보처리기긱 운영 및 관리방침</a>&emsp;|&nbsp;</li>
+				<li><a href="">TABLE JAVA회원안내</a>&emsp;|&nbsp;</li>
+				<li><a href="">배정기준</a>&emsp;|&nbsp;</li>
+				<li><a href="">채용안내</a>&emsp;|&nbsp;</li>
+				<li><a href="">광고/임대문의</a>&emsp;&nbsp;</li>
+			</ul>
+			<div class="footersen">
+				<div>충청남도 천안시 동남구 대흥로 215 7층, 8층</div>
+				<div>대표 이메일 humanec@naver.com | 고객센터 1566-9564 | 사업자등록번호 667-81-02135 | <a href="#"><span><u>사업자정보확인</u></span></a> </div>
+				<div>대표이사 박춘보 | 개인정보 보호 책임자 차수 호스팅 제공자 휴먼교육센터</div>
+				<div>Copyright &copy; HUMAN Cultureworks All Right Reserved. </div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

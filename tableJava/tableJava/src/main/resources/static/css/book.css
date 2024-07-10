@@ -1,0 +1,366 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular';
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+    background-color: #EBEBEB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    animation: navbarBottom 1s forwards;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
+}
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
+    color: #ff1616;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    width: 200px;
+    right: 0;
+    top: 100%;
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+#container {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 30px;
+    width: 800px;
+    margin-top: 50px;
+    height:670px;
+}
+
+#store_div {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.photo {
+    height: 200px;
+    background-color: #e9ecef;
+    margin-right: 20px;
+}
+
+.info {
+    flex-grow: 1;
+    font-weight: bold;
+}
+
+#nameInput {
+    height:30px;
+    border: 1px solid #ccc;
+    margin-left:10px;
+}
+
+#map {
+    width: 300px;
+    height: 300px;
+    background-color: #e9ecef;
+}
+
+#book_div {
+    margin-bottom: 20px;
+}
+
+.upperBookDiv {
+    display: flex;
+
+}
+
+.people, .datetime {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.people{
+    margin-left:200px;
+}
+
+button {
+    background-color: white;
+    color: #ff1616;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+
+}
+
+textarea{
+    width:320px;
+    height:120px;
+    font-size:15px;
+    font-weight: bold;
+}
+
+.people button{
+    width: 50px;
+    height: 40px;
+}
+
+#bookBtn, #goBackBtn{
+    background-color: #ff1616;
+    border-radius: 40px;
+    border: none;
+    color: white;
+    width: 100px;
+    font-weight: bold;
+    height:50px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#goBackBtn{
+    background-color: lightgrey;
+    color:black;
+}
+
+.styled-input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 45%;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+
+.datetime label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.datetime input[type="date"], .datetime input[type="time"] {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 4px;
+    width: 200px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.datetime input[type="date"]:focus, .datetime input[type="time"]:focus {
+    border-color: #ff6554;
+    box-shadow: 0 0 5px rgba(255, 101, 84, 0.5);
+    outline: none;
+}
+
+#textArea {
+    width:400px;
+    height:100px;
+    resize:none;
+}
+
+
+.touch{
+    height: 100px;
+}
+
+footer{
+    width:100%;
+    background-color:#fff7ed;
+    bottom: 0;
+    position: relative;
+    left: 0;
+}
+
+.footerContainer {
+    margin : 20px auto;
+    text-align: center;
+    border-top:1px solid #ff1616 ;
+
+}
+.footerContainer > div>div>span>img {
+    margin : 0 auto;
+    vertical-align: middle;
+    float:left;
+}
+.logoFont {
+    font-family: "Black Han Sans", sans-serif;
+    height: 40px;
+}
+
+.footerLogo > span > select{
+    width : 180px;
+    height: 40px;
+    font-size: 13pt;
+    float : right;
+}
+
+.workLinks > ul{
+    margin-right:30px;
+}
+
+.workLinks > ul > li {
+    display: inline-block;
+    margin-top : 20px;
+    font-size: 10.6px;
+}
+.footerLogo {
+    margin: 0 auto;
+    width : 980px;
+}
+.footersen {
+    font-size: 11px;
+    text-align: left;
+    margin-left:170px;
+}
+.footersen>div{
+    margin-top: 7px;
+}
+
+.lowerBookDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.requirementDiv {
+    margin-bottom: 10px;
+}
+
+.btnsDiv {
+    margin-top:70px;
+}

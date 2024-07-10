@@ -12,4 +12,5 @@ import org.springframework.stereotype.Repository;
 @Repository("userDAO")
 public interface UserDAO {
     public UserVO getUserInfo(String userId) throws DataAccessException;
+    public int updateProfile(UserVO user) throws DataAccessException;
 }

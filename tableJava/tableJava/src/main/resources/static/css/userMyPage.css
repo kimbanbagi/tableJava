@@ -1,0 +1,563 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular';
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    animation: navbarBottom 1s forwards;
+    z-index: 1000;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
+}
+
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+    z-index: 1000;
+}
+
+.menu button {
+    width: 300px;
+    margin-left: -87px;
+    color: black;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
+    color: #ff1616;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1200;
+    width: 200px; /* Set a fixed width or match the width of the submenu content */
+    right: 0; /* Align the submenu to the right of the menu */
+    top: 100%;
+    /* transform: translateX(100%); */
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.sub button {
+    color: black;
+
+}
+
+.container {
+    background-color: #f8f9fa;
+    display: flex;
+    width: 100%;
+    height: 800px;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.profile {
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.profile-pic img {
+    height:100%;
+    width:100%;
+    display: block;
+    border-radius: 50%;
+}
+
+.profile-info {
+    border-radius: 10px;
+    width: 400px;
+    height: 130px;
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+}
+
+.editBtnDiv {
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.editBtnDiv button {
+    border: none;
+    width: 120px;
+    height: 50px;
+    border-radius: 20px;
+    color: white;
+    background-color:  #ff6554;
+    font-size: 18px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
+}
+
+.modalDiv {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
+    position: absolute;
+    display: none;
+}
+
+.modal {
+    width: 600px;
+    height: 550px;
+    background-color: lightgray;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.modalPhoto {
+    width: 96.5%;
+    height: 150px;
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.modalPhoto img {
+    margin-top: 10px;
+    height: 130px;
+    margin-left: 10px;
+}
+
+.modalProfile {
+    width: 250px;
+    height: 100px;
+    margin-top: 25px;
+    margin-left: 20px;
+}
+
+.modalProfile input {
+    width:100px;
+    height:50px;
+    background-color: #ff1616;
+}
+
+
+.uploadBtnDiv {
+    width:200px;
+    height:100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top:25px;
+}
+
+.uploadBtn {
+    width:130px;
+    height:40px;
+    background-color: seagreen;
+    border-radius: 20px;
+    color:white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    font-size:16px;
+    cursor: pointer;
+    line-height: 40px;
+    text-align: center;
+    margin-right:10px;
+}
+
+#uImage {
+    display: none;
+}
+
+.modalName,
+.modalId {
+    width: 200px;
+    height: 50px;
+    background-color: #EBEBEB;
+    text-align: center;
+    line-height: 50px;
+}
+
+.modalNumber,
+.modalEmail {
+    width: 96.5%;
+    height: 100px;
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.modalNumber img,
+.modalEmail img {
+    height: 35px;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.modalNumber div,
+.modalEmail div {
+    width: 200px;
+    height: 50px;
+    background-color: #EBEBEB;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 23px;
+    margin-left: 10px;
+}
+
+
+
+#newNumber,
+#newEmail {
+    width: 200px;
+    height: 48px;
+    background-color: #EBEBEB;
+    border: none;
+    margin-top: 23px;
+    margin-left: 10px;
+    visibility: hidden;
+}
+
+.editBtn {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: seagreen;
+    margin-top: 27px;
+    margin-left: 40px;
+    font-size: 16px;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
+}
+
+.btnDiv {
+    width: 100%;
+    height: 60px;
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.btnDiv button {
+    width: 130px;
+    height: 40px;
+    background-color: #ff1616;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    font-size: 17px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
+}
+#closeBtn {
+    background-color: gray;
+    color: black;
+    font-weight: bold;
+}
+
+
+.history-section {
+    background-color:#EBEBEB;
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.history-section-h1 {
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+
+}
+
+
+
+.history-list{
+    width: 80%;
+    height: 100%;
+    max-height: 530px;
+    overflow-y: auto;
+    border-top: 1px solid #e0e0e0;
+    overflow-y: scroll;
+    margin-top: 25px;
+    padding-right: 50px;
+    box-sizing: content-box;
+    margin-left: 65px;
+    border: none;
+    overflow-x: hidden;
+
+}
+
+.history-list::-webkit-scrollbar {
+    width: 13px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: #ff1616;
+    border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);
+}
+
+
+.history-item {
+    padding: 15px;
+    margin-top: 35px;
+    background-color: #fff7ed;
+    border-radius: 25px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border: 2px solid snow;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width:450px;
+    margin-left: 10px;
+}
+
+.history-item div {
+    margin: 5px 0;
+    color: #666;
+
+}
+
+
+.review {
+    margin-left: auto;
+}
+
+.review button {
+    background-color: #0f7700;
+    border-color: white;
+    font-size: 15px;
+    border-radius: 20px;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    color: white;
+}
+
+.review button:disabled {
+    background-color: lightgrey;
+    color: black;
+    cursor: default;
+}
+
+
+footer{
+    width:100%;
+    background-color:#fff7ed;
+    bottom: 0;
+    position: relative;
+    left: 0;
+}
+
+.footerContainer {
+    margin : 20px auto;
+    text-align: center;
+    border-top:1px solid #ff1616 ;
+
+}
+.footerContainer > div>div>span>img {
+    margin : 0 auto;
+    vertical-align: middle;
+    float:left;
+}
+.logoFont {
+    font-family: "Black Han Sans", sans-serif;
+    height: 40px;
+}
+
+.footerLogo > span > select{
+    width : 180px;
+    height: 40px;
+    font-size: 13pt;
+    float : right;
+}
+
+.workLinks > ul{
+    margin-right:30px;
+}
+
+.workLinks > ul > li {
+    display: inline-block;
+    margin-top : 20px;
+    font-size: 10.6px;
+}
+.footerLogo {
+    margin: 0 auto;
+    width : 980px;
+}
+.footersen {
+    font-size: 11px;
+    text-align: left;
+    margin-left:170px;
+}
+.footersen>div{
+    margin-top: 7px;
+}

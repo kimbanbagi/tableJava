@@ -1,0 +1,326 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Pretendard-Regular';
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    animation: navbarBottom 1s forwards;
+    z-index: 1000;
+}
+
+.nav img {
+    width:150px;
+    height:50px;
+    position: absolute;
+    left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav .buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav button {
+    background-color: transparent;
+    color:gray;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+}
+
+.nav button::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 50%;
+    bottom: 0;
+    transition: width 0.3s, left 0.3s;
+}
+
+.nav button:hover {
+    color: #ff1616;
+}
+
+.nav button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
+}
+
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    position: relative;
+    z-index: 1000;
+}
+
+.menu button {
+    width: 300px;
+    margin-left: -87px;
+    color: black;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
+    color: #ff1616;
+}
+
+.menu .sub {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1200;
+    width: 200px;
+    right: 0;
+    top: 100%;
+    /* transform: translateX(100%); */
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    border-radius: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    padding: 20px;
+    width: 800px;
+    height: 650px;
+    margin-top: 50px;
+    background-color: lightgrey;
+    margin-bottom: 100px;
+}
+
+.header {
+    font-size: 35px;
+    font-weight: bold;
+    width: 270px;
+    margin-left: 10px;
+}
+
+.info {
+    /*background-color:yellow;*/
+    width: 800px;
+    height: 600px;
+    font-size: large;
+    margin-top: 20px;
+    display: flex;
+
+}
+
+.info-sub {
+    /*background-color: #ff6d2a;*/
+    width: 500px;
+    height: 500px;
+    margin-left: 10px;
+    padding-top: 10px;
+    border-radius: 20px;
+}
+
+.info-sub img {
+    height:200px;
+}
+
+.statsDiv {
+    background-color: white;
+    width:300px;
+    height:550px;
+    border-radius: 10px;
+}
+
+#statsLabel {
+    margin:10px;
+    font-weight: bold;
+}
+
+#reviewLabel {
+    margin:10px;
+    font-weight: bold;
+}
+
+
+#piechart {
+    width:300px;
+    height:300px;
+}
+
+#chart_div {
+    width:300px;
+    height:200px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: -200px;
+    width: 100%;
+}
+
+
+footer{
+    width:100%;
+    background-color:#fff7ed;
+    bottom: 0;
+    position: relative;
+    left: 0;
+}
+
+.footerContainer {
+    margin : 20px auto;
+    text-align: center;
+    border-top:1px solid #ff1616 ;
+
+}
+.footerContainer > div>div>span>img {
+    margin : 0 auto;
+    vertical-align: middle;
+    float:left;
+}
+.logoFont {
+    font-family: "Black Han Sans", sans-serif;
+    height: 40px;
+}
+
+.footerLogo > span > select{
+    width : 180px;
+    height: 40px;
+    font-size: 13pt;
+    float : right;
+}
+
+.workLinks > ul{
+    margin-right:30px;
+}
+
+.workLinks > ul > li {
+    display: inline-block;
+    margin-top : 20px;
+    font-size: 10.6px;
+}
+.footerLogo {
+    margin: 0 auto;
+    width : 980px;
+}
+.footersen {
+    font-size: 11px;
+    text-align: left;
+    margin-left:170px;
+}
+.footersen>div{
+    margin-top: 7px;
+}
+
+.dark-mode {
+    background-color: #1e1f21;
+    color: black;
+}
+
+.dark-mode .container {
+    background-color: #272829;
+    color: white;
+}
+
+.dark-mode .search-box input::placeholder{
+    color: white;
+}
+
+.dark-mode .listDiv {
+    color: black;
+}
+
+
+.dark-mode .nav.navbar_main {
+    background-color: #313233;
+}
+
+.dark-mode .nav {
+    background-color: #313233;
+}
+.dark-mode .footerContainer{
+    background-color: #2e2f30;
+}

@@ -6,13 +6,27 @@
     <meta charset="utf-8">
     <title>로그인 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/login.css">
     <script>
-        var msg = "${msg}";
+        $(document).ready(function() {
+            history.pushState(null, null, location.href);
+            window.onpopstate = function(event){history.go(1)};
+        });
 
-        if(msg != null && msg != ""){
-            alert(msg);
-        }
+        $(document).ready(function() {
+            var msg = "${msgSuccess}";
+            if (msg != null && msg != "") {
+                swal("성공", msg, "success");
+            }
+        });
+
+        $(document).ready(function() {
+            var msg = "${msgFailed}";
+            if (msg != null && msg != "") {
+                swal("오류", msg, "error");
+            }
+        });
 
         function login(id, pwd) {
             var userId = id;
@@ -29,7 +43,7 @@
                 success : function(response) {
                 },
                 error : function() {
-                    alert("일치하는 정보가 없습니다.");
+                    swal("일치하는 정보가 없습니다.");
                 }
             })
         }
@@ -42,14 +56,14 @@
             <img src="image/logo.png">
         </div>
         <div class="input-group">
-            <label>아이디</label>
+            <label style="font-weight: bold; font-size: 18px;">아이디</label>
             <input type="text" name="userId" required>
         </div>
         <div class="input-group">
-            <label>비밀번호</label> <input type="password"
+            <label style="font-weight: bold; font-size: 18px;">비밀번호</label> <input type="password"
                                                       name="userPwd" required>
         </div>
-        <button type="submit" value="로그인" class="login-btn">
+        <button type="submit" value="로그인" class="login-btn" style="font-weight: bold; font-size: 18px;">
             로그인<br>
         </button>
     </form>

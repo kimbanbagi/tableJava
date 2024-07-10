@@ -1,6 +1,12 @@
-/* findPW_done.css */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard-Regular';
     background-color: #f9f9f9;
     margin: 0;
     padding: 0;
@@ -16,7 +22,7 @@ body {
     max-width: 600px;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 8px;
     text-align: center;
     margin-bottom: 20px;
@@ -28,12 +34,12 @@ h1 {
 }
 
 button {
-    width: 200px;
+    width: 150px;
     padding: 15px;
     background-color: #ff1616;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;

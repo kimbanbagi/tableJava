@@ -9,4 +9,5 @@ public interface UserBookService {
     public int addBook(BookVO book);
     public int cancelBook(String userId, String restaurantId);
     public List<BookVO> getHistory(String userId);
+    public int updateWritten(String userId, String restaurantId);
 }

@@ -11,10 +11,10 @@
 </head>
 <body>
 <div class="container">
-	<h1>임시 비밀번호가 발급 되었습니다.</h1>
-	<h3>[ ${tempPW} ]</h3>
+	<h3>임시 비밀번호가 발급 되었습니다.</h3>
+	<h2>[ ${tempPW} ]</h2>
 	<form method="post" action="loginPage">
-		<button type="submit">로그인</button>
+		<button type="submit" style="font-size: 16px; font-weight: bold;">로그인</button>
 	</form>
 </div>
 </body>

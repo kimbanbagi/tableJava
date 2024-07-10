@@ -8,4 +8,5 @@ public interface UserWaitService {
     public List<WaitVO> getUserWaitList(String userId);
     public String getNextNumber(String restaurantId);
     public int addWait(WaitVO wait);
+    public int cancelWait(String userId, String restaurantId);
 }

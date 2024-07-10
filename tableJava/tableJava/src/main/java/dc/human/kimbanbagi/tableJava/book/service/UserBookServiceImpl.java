@@ -3,6 +3,8 @@ package dc.human.kimbanbagi.tableJava.book.service;
 import dc.human.kimbanbagi.tableJava.book.dao.BookDAO;
 import dc.human.kimbanbagi.tableJava.book.vo.BookVO;
 
+import dc.human.kimbanbagi.tableJava.review.dao.ReviewDAO;
+import dc.human.kimbanbagi.tableJava.user.dao.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,6 +19,9 @@ public class UserBookServiceImpl implements UserBookService {
     @Autowired
     private BookDAO bookDAO;
 
+    @Autowired
+    private ReviewDAO reviewDAO;
+
     java.util.Date now = new java.util.Date();
     Date sqlDate = new Date(now.getTime());
 
@@ -28,8 +33,13 @@ public class UserBookServiceImpl implements UserBookService {
     @Override
     public int addBook(BookVO book){
         book.setCreatedDate(sqlDate);
+        book.setWritten("F");
 
-        return bookDAO.addBook(book);
+        if(bookDAO.addBook(book) == 1){
+            return reviewDAO.reviewInit(book);
+        }
+
+        return 0;
     }
 
     @Override
@@ -40,5 +50,10 @@ public class UserBookServiceImpl implements UserBookService {
     @Override
     public List<BookVO> getHistory(String userId) {
         return bookDAO.getHistory(userId);
+    }
+
+    @Override
+    public int updateWritten(String userId, String restaurantId){
+        return bookDAO.updateWritten(userId, restaurantId);
     }
 }

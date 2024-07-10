@@ -16,6 +16,7 @@ public interface BookDAO {
     public int addBook(BookVO book) throws DataAccessException;
     public int cancelBookFromUser(String userId, String restaurantId) throws DataAccessException;
     public List<BookVO> getHistory(String userId) throws DataAccessException;
+    public int updateWritten(String userId, String restaurantId) throws DataAccessException;
 
     // 사장님
     public List<BookVO> getOwnerBookList(String restaurantId) throws DataAccessException;

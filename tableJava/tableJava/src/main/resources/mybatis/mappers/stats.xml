@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.owner.dao.StatsDAO">
+
+    <select id="getRCount" parameterType="String">
+        <![CDATA[
+            SELECT COUNT(*)
+                FROM reservation
+            WHERE restaurant_id=#{restaurantId}
+        ]]>
+    </select>
+
+    <select id="getRCancelFromUser" parameterType="String">
+        <![CDATA[
+            SELECT COUNT(*)
+                FROM reservation
+            WHERE restaurant_id=#{restaurantId} AND reservation_status='2'
+        ]]>
+    </select>
+
+    <select id="getRCancelFromOwner" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+            FROM reservation
+        WHERE restaurant_id=#{restaurantId} AND reservation_status='3'
+        ]]>
+    </select>
+
+    <select id="getREndSuccess" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+            FROM reservation
+        WHERE restaurant_id=#{restaurantId} AND reservation_status='4'
+        ]]>
+    </select>
+
+    <select id="get1Star" parameterType="String">
+        <![CDATA[
+            SELECT COUNT(*)
+                FROM review
+            WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL AND star='1'
+        ]]>
+    </select>
+
+    <select id="get2Star" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM review
+        WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL AND star='2'
+        ]]>
+    </select>
+
+    <select id="get3Star" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM review
+        WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL AND star='3'
+        ]]>
+    </select>
+
+    <select id="get4Star" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM review
+        WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL AND star='4'
+        ]]>
+    </select>
+
+    <select id="get5Star" parameterType="String">
+        <![CDATA[
+        SELECT COUNT(*)
+        FROM review
+        WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL AND star='5'
+        ]]>
+    </select>
+
+</mapper>

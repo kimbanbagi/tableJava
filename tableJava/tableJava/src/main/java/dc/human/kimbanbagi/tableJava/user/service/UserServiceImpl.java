@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService {
     public UserVO getUserInfo(String userId){
         return userDAO.getUserInfo(userId);
     }
+
+    @Override
+    public int updateProfile(UserVO user) {
+        return userDAO.updateProfile(user);
+    }
 }

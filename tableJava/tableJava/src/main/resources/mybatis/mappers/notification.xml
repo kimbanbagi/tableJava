@@ -26,19 +26,18 @@
                 comments
             FROM notification
             WHERE user_id=#{userId}
-            order by created_date desc
         ]]>
     </select>
 
     <select id="getOwnerNotifications" resultMap="notification">
         <![CDATA[
         SELECT
+            user_id,
             restaurant_id,
             restaurant_name,
             comments
         FROM notification
         WHERE restaurant_id=#{restaurantId}
-        order by created_date desc
         ]]>
     </select>
 
@@ -63,12 +62,14 @@
     <insert id="addOwnerNotification" parameterType="dc.human.kimbanbagi.tableJava.notification.vo.NotificationVO">
         <![CDATA[
         INSERT INTO notification (
+                                  user_id,
             restaurant_id,
             restaurant_name,
             comments,
             created_id,
             created_date
         ) VALUES (
+                  #{uId},
                      #{rId},
                      #{rName},
                      #{comments},

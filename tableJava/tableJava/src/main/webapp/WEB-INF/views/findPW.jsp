@@ -7,12 +7,13 @@
 <title>비밀번호 찾기 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-	var msg = "${msg}";
 
-	if (msg != null && msg != "") {
-		alert(msg);
-		request.removeAttribute("msg");
-	}
+	$(document).ready(function() {
+		var msg = "${msg}";
+		if (msg != null && msg != "") {
+			swal("실패", msg, "error");
+		}
+	});
 </script>
 <link rel="stylesheet" href="css/findPW.css">
 </head>

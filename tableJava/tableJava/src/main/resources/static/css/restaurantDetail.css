@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular';
+}
+
+
 .nav {
     display: flex;
     align-items: center;
@@ -7,13 +19,21 @@
     width: 100%;
     justify-content: center;
     position: relative;
+    animation: navbarBottom 1s forwards;
+    z-index: 1000;
 }
 
 .nav img {
-    width: 150px;
-    height: 50px;
+    width:150px;
+    height:50px;
     position: absolute;
     left: 20px;
+}
+
+.nav form, .nav button {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .nav .buttons-container {
@@ -24,7 +44,7 @@
 
 .nav button {
     background-color: transparent;
-    color: #000;
+    color:gray;
     border: none;
     padding: 10px 20px;
     margin-left: 15px;
@@ -40,7 +60,6 @@
     height: 2px;
     left: 50%;
     bottom: 0;
-    background-color: #ff1616;
     transition: width 0.3s, left 0.3s;
 }
 
@@ -53,126 +72,137 @@
     left: 0;
 }
 
-.logout {
-    position: absolute;
-    top: 50%; 
-    transform: translateY(2%);
-    right: 5px;
+.nav h2 {
+    display: inline-block;
+    margin: 0 15px;
+    color: red;
 }
-
-.logout button {
+.menu {
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
     background-color: transparent;
-    color: #000; 
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    font-size: 14px;
-    transition: color 0.3s; 
-    border-radius: 5px;
-    text-decoration: none;
+    transition: color 0.3s, border-bottom 0.3s;
     position: relative;
+    z-index: 1000;
 }
 
-.logout button:hover {
+.menu button {
+    width: 300px;
+    margin-left: -87px;
+    color: black;
+}
+
+.menu span {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu span:hover {
     color: #ff1616;
 }
 
-.logout button::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 50%;
-    bottom: 0;
-    background-color: #ff1616;
-    transition: width 0.3s, left 0.3s;
-}
-
-.logout button:hover::after {
-    width: 0;
-    left: 50%;
-}
-
-/* 전역 스타일 */
-body {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    margin: 0;
+.menu .sub {
+    display: none;
+    list-style: none;
     padding: 0;
+    margin: 0;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1200;
+    width: 200px;
+    right: 0;
+    top: 100%;
+    transition: transform 0.3s ease;
+}
+
+.menu:hover .sub {
+    display: block;
+    transform: translateX(0);
+}
+
+.menu .sub li {
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu .sub li:first-child {
+    border-top: none;
+}
+
+.menu .sub li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s;
+}
+
+.menu .sub li a:hover {
+    background-color: #f8f9fa;
+}
+@keyframes navbarBottom {
+    0% {
+        transform: translateY(-70%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 h1 {
     text-align: center;
     color: #333;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
 /* 컨테이너 스타일 */
+
 .container {
-    width: 700px;
-    margin: 20px auto;
-    height:400px;
-    background-color: white;
+    width:100%;
+    height:700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container_detail {
+    width: 800px;
+    height:670px;
+    background-color: #EBEBEB;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 8px;
 }
 
 
-/* 상세 정보 스타일 */
-.details {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.details div {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.details div:last-child {
-    margin-right: 0;
-}
-
-
-
-
-/* 설명 박스 스타일 */
-.description {
-    background-color: #fff700;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-.description h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.description ul {
-    list-style: none;
-    padding: 0;
-}
-
-.description li {
-    margin: 5px 0;
-}
 .img{
 	width:250px;
-	height:250px;
-
+	height:200px;
 	border:1px solid black;
+    margin-top:17px;
 }
+
 .box{
 	width:500px;
-	height:250px;
+	height:200px;
 	border:none;
 	margin-left:30px;
 	margin-top:15.8px;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	border-radius: 8px;
+	border-radius: 20px;
+    background-color: white;
 }
+
 .box p{
 	padding-top:8px;
 	padding-left:30px;
@@ -182,45 +212,63 @@ h1 {
 .flex{
 	display:flex;
 	justify-content:center;
-	
 }
-#aaa{
+
+.aaa{
 	background-color:#ff1616;
 	border:0px;
 	border-radius:40px;
 	color:white;
-	margin-top:-0.1px;
-	font-size:16px;
 	cursor:pointer;
+    font-weight: bold;
+    font-size: 18px;
+    width:100%;
+    height:100%;
 }
 
-#bbb{
+.aaa:disabled , .bbb:disabled{
+    background-color: lightgrey;
+}
+
+.bbb{
 	border:0px;
 	border-radius:40px;
 	margin-top:-0.1px;
-	font-size:16px;
 	cursor:pointer;
+    font-weight: bold;
+    margin-right:10px;
+    background-color: seagreen;
+    font-size: 18px;
+    color:white;
 }
 
 #backBtn{
-	border:0px;
+	border:none;
 	border-radius:40px;
-	margin-top:-0.1px;
-	font-size:16px;
+    margin-left:20px;
 	width:130px;
 	height:50px;
 	cursor:pointer;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
 
 .btns{
 	width:130px;
 	height:50px;	
 	display:inline-block;
-	margin-left:50px;
+    margin-left: 90px;
 	position:relative;
 	left:340px;
-	top: 60px;
+	top: 50px;
+    border-radius:40px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
 }
+
+
 .btns form{
 	width:100%;
 	height:100%;
@@ -231,9 +279,74 @@ h1 {
 .btns form button{
 	width:100%;
 	height:100%;
-	display:block;	
+	display:block;
 }
 
 .allbtns{
 	margin-left:100px;
 }
+
+.container_review {
+    margin:20px 15px;
+    width:770px;
+    height:300px;
+    border:none;
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+    position: relative;
+    padding-top:20px;
+}
+
+.container_review h2{
+    position:absolute;
+    left:24px;
+    top:-14px;
+}
+
+.reviewDiv {
+    width:700px;
+    height:100px;
+    background-color: lightslategrey;
+    margin-top:20px;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.titleDiv {
+    width:100%;
+    height:20px;
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleDiv img {
+    float: left;
+    height:15px;
+    margin-left:10px;
+    margin-right:5px;
+}
+
+.nickname {
+    margin-right:10px;
+    font-weight: bold;
+}
+
+.commentDiv {
+    width:99%;
+    height:60px;
+    background-color: white;
+    border-radius: 10px;
+    padding:3px;
+}
+
