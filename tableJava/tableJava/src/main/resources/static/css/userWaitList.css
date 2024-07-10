@@ -336,3 +336,24 @@ footer{
 .footersen>div{
 	margin-top: 7px;
 }
+
+
+.dark-mode {
+	background-color: #1e1f21;
+}
+.dark-mode .bookDiv {
+	background-color: #272829;
+	color: white;
+}
+.dark-mode .nav {
+	background-color: #313233;
+}
+.dark-mode .labelDiv {
+	color:white;
+}
+.dark-mode .footerContainer{
+	background-color: #2e2f30;
+}
+.dark-mode .status div {
+	color: black;
+}

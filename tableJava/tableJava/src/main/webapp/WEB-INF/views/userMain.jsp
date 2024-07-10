@@ -28,8 +28,27 @@
 			// 다크모드
 			$('.dark-mode-btn').click(function () {
 				$('body').toggleClass('dark-mode');
-				$('#dark-mode-style').attr('href', $('body').hasClass('dark-mode') ? 'css/dark-mode.css' : '');
+
+				// 테마 상태 저장
+				if ($('body').hasClass('dark-mode')) {
+					localStorage.setItem('theme', 'dark-mode');
+				} else {
+					localStorage.setItem('theme', '');
+				}
+
+				// 테마 적용 (선택사항)
+				const theme = localStorage.getItem('theme');
+				if (theme) {
+					$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+				}
 			});
+
+// 페이지 로드 시 테마 복원 (선택사항)
+			const theme = localStorage.getItem('theme');
+			if (theme) {
+				$('body').addClass(theme);
+				$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+			}
 
 			// 추천리스트 페이지네이션 스크립트
 			const itemWidth = $('.listDiv').outerWidth(true);

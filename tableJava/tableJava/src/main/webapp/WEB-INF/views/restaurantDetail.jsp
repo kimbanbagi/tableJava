@@ -37,12 +37,11 @@
 		<div class="buttons-container">
 			<form method="POST" action="userMainPage">
 				<input type="hidden" name="userId" value="${userId }">
-				<button type="submit">메인 화면</button>
+				<button type="submit">홈</button>
 			</form>
 			<form method="POST" action="userBookListPage">
 				<input type="hidden" name="userId" value="${userId }">
-				<button type="submit" name="action" value="bookList">예약 /
-					웨이팅</button>
+				<button type="submit" name="action" value="bookList">예약/웨이팅</button>
 			</form>
 			<form method="post" action="userNotificationPage">
 				<input type="hidden" name="userId" value="${userId }">

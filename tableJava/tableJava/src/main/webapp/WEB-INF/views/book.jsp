@@ -87,6 +87,30 @@
 		$("#goBackBtn").on('click', function(event) {
 			event.preventDefault();
 		})
+
+		$('.dark-mode-btn').click(function () {
+			$('body').toggleClass('dark-mode');
+
+			// 테마 상태 저장
+			if ($('body').hasClass('dark-mode')) {
+				localStorage.setItem('theme', 'dark-mode');
+			} else {
+				localStorage.setItem('theme', '');
+			}
+
+			// 테마 적용 (선택사항)
+			const theme = localStorage.getItem('theme');
+			if (theme) {
+				$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+			}
+		});
+
+// 페이지 로드 시 테마 복원 (선택사항)
+		const theme = localStorage.getItem('theme');
+		if (theme) {
+			$('body').addClass(theme);
+			$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+		}
 	});
 
 	$(document).ready(function() {
@@ -110,11 +134,11 @@
 	<div class="buttons-container">
 		<form method="post" action="userMainPage">
 			<input type="hidden" name="userId" value="${userId }">
-			<button type="submit">메인 화면</button>
+			<button type="submit">홈</button>
 		</form>
 		<form method="post" action="userBookListPage">
 			<input type="hidden" name="userId" value="${userId }">
-			<button type="submit">예약 / 웨이팅</button>
+			<button type="submit">예약/웨이팅</button>
 		</form>
 		<form method="post" action="userNotificationPage">
 			<input type="hidden" name="userId" value="${userId }">
@@ -129,13 +153,18 @@
 		<span>☰</span>
 		<ul class="sub">
 			<li>
-				<a href="#None">여기에</a>
+				<button class="dark-mode-btn">다크 모드</button>
 			</li>
 			<li>
-				<a href="#None">무엇을</a>
+				<form method="post" action="changePwdPage">
+					<input type="hidden" name="userId" value="${userId}">
+					<button type="submit">비밀번호 변경</button>
+				</form>
 			</li>
 			<li>
-				<a href="#None">넣을까요</a>
+				<form method="post" action="logout">
+					<button type="submit">로그아웃</button>
+				</form>
 			</li>
 		</ul>
 	</div>

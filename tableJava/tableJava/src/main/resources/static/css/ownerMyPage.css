@@ -535,3 +535,36 @@ footer{
 .footersen>div{
     margin-top: 7px;
 }
+
+.dark-mode {
+    background-color: #1e1f21;
+    color: black;
+}
+.dark-mode .container{
+    background-color: #1e1f21;
+
+}
+.dark-mode .history-section {
+    background-color: #272829;
+    color: white;
+}
+.dark-mode .profile {
+    background-color: #113320;
+
+}
+
+.dark-mode .search-box input::placeholder{
+    color: white;
+}
+
+.dark-mode .listDiv {
+    color: black;
+}
+
+
+.dark-mode .nav {
+    background-color: #313233;
+}
+.dark-mode .footerContainer{
+    background-color: #2e2f30;
+}

@@ -54,6 +54,30 @@
 			}
 			subToggle = !subToggle;
 		});
+
+		$('.dark-mode-btn').click(function () {
+			$('body').toggleClass('dark-mode');
+
+			// 테마 상태 저장
+			if ($('body').hasClass('dark-mode')) {
+				localStorage.setItem('theme', 'dark-mode');
+			} else {
+				localStorage.setItem('theme', '');
+			}
+
+			// 테마 적용 (선택사항)
+			const theme = localStorage.getItem('theme');
+			if (theme) {
+				$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+			}
+		});
+
+// 페이지 로드 시 테마 복원 (선택사항)
+		const theme = localStorage.getItem('theme');
+		if (theme) {
+			$('body').addClass(theme);
+			$('#dark-mode-style').attr('href', theme === 'dark-mode' ? 'css/dark-mode.css' : '');
+		}
 	});
 </script>
 </head>
@@ -63,7 +87,7 @@
 		<div class="buttons-container">
 			<form method="POST" action="userMainPage">
 				<input type="hidden" name="userId" value="${userId }">
-				<button type="submit">메인 화면</button>
+				<button type="submit">홈</button>
 			</form>
 			<button onclick="location.reload()">예약/웨이팅</button>
 			<form method="post" action="userNotificationPage">
@@ -80,7 +104,7 @@
 			<span>☰</span>
 			<ul class="sub">
 				<li>
-					<button>다크 모드</button>
+					<button class="dark-mode-btn">다크 모드</button>
 				</li>
 				<li>
 					<form method="post" action="changePwdPage">
