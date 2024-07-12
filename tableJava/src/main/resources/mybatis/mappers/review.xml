@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.review.dao.ReviewDAO">
+    <resultMap id="review" type="dc.human.kimbanbagi.tableJava.review.vo.ReviewVO">
+        <result property="rId" column="restaurant_id" />
+        <result property="rName" column="restaurant_name" />
+        <result property="rDate" column="reservation_date" />
+        <result property="rTime" column="reservation_time" />
+        <result property="uId" column="user_id" />
+        <result property="star" column="star" />
+        <result property="grade" column="grade" />
+        <result property="review" column="review" />
+        <result property="createdDate" column="created_date" />
+        <result property="updatedDate" column="updated_date" />
+        <result property="written" column="written_status" />
+    </resultMap>
+
+    <insert id="reviewInit" parameterType="dc.human.kimbanbagi.tableJava.book.vo.BookVO">
+        <![CDATA[
+            INSERT INTO review (
+                                restaurant_id,
+                                restaurant_name,
+                                reservation_date,
+                                reservation_time,
+                                user_id,
+                                review,
+                                star
+            ) VALUES (
+                      #{rId}, #{rName}, #{rDate}, #{rTime},#{uId},'','0'
+                     )
+        ]]>
+    </insert>
+
+    <update id="addReview" parameterType="String">
+        <![CDATA[
+            UPDATE review SET
+                              review = #{review},
+                              star = #{star}
+            WHERE user_id=#{userId} AND restaurant_id=#{restaurantId}
+        ]]>
+    </update>
+
+    <select id="getReviewList" resultMap="review">
+        <![CDATA[
+            SELECT *
+            FROM review
+            WHERE restaurant_id=#{restaurantId} AND review IS NOT NULL
+        ]]>
+    </select>
+
+    <select id="randomReview" resultMap="review" parameterType="String">
+        <![CDATA[
+            SELECT * FROM (
+                SELECT * FROM review
+                         WHERE restaurant_id=#{restaurantId} order by DBMS_RANDOM.RANDOM
+                          )
+            WHERE ROWNUM<=1 AND review IS NOT NULL
+        ]]>
+    </select>
+
+
+</mapper>

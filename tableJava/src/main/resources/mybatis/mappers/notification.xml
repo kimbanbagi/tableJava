@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dc.human.kimbanbagi.tableJava.notification.dao.NotificationDAO">
+    <resultMap id="notification" type="dc.human.kimbanbagi.tableJava.notification.vo.NotificationVO">
+        <result property="uId" column="user_id" />
+        <result property="rId" column="restaurant_id" />
+        <result property="rName" column="restaurant_name" />
+        <result property="comments" column="comments" />
+        <result property="uRole" column="user_role" />
+        <result property="createdDate" column="created_date"/>
+    </resultMap>
+
+    <select id="getUserNotifications" resultMap="notification">
+        <![CDATA[
+            SELECT
+                user_id,
+                restaurant_name,
+                comments
+            FROM notification
+            WHERE user_id=#{userId} AND user_role='U'
+            order by created_date desc
+        ]]>
+    </select>
+
+    <select id="getOwnerNotifications" resultMap="notification">
+        <![CDATA[
+        SELECT
+            user_id,
+            restaurant_id,
+            restaurant_name,
+            comments,
+            created_date
+        FROM notification
+        WHERE restaurant_id=#{restaurantId} AND user_role='O'
+        order by created_date desc
+        ]]>
+    </select>
+
+    <insert id="addUserNotification" parameterType="dc.human.kimbanbagi.tableJava.notification.vo.NotificationVO">
+        <![CDATA[
+            INSERT INTO notification (
+                                      user_id,
+                                      restaurant_name,
+                                      comments,
+                                      user_role,
+                                      created_id,
+                                      created_date
+            ) VALUES (
+                      #{uId},
+                      #{rName},
+                      #{comments},
+                      'U',
+                      #{uId},
+                      #{createdDate}
+                     )
+        ]]>
+    </insert>
+
+    <insert id="addOwnerNotification" parameterType="dc.human.kimbanbagi.tableJava.notification.vo.NotificationVO">
+        <![CDATA[
+        INSERT INTO notification (
+                                  user_id,
+            restaurant_id,
+            restaurant_name,
+            comments,
+                                  user_role,
+            created_id,
+            created_date
+        ) VALUES (
+                  #{uId},
+                     #{rId},
+                     #{rName},
+                     #{comments},
+                  'O',
+                     #{rId},
+                     #{createdDate}
+                 )
+        ]]>
+    </insert>
+</mapper>
